@@ -5,12 +5,12 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import SubmitButton from "../components/SubmitButton";
-import AppButton from "../components/AppButton";
 import AppTextInput from "../components/AppTextInput";
-import Screen from "../components/Screen";
-import ErrorMessage from "../components/ErrorMessage";
 import Constants from "expo-constants";
+import ErrorMessage from "../components/ErrorMessage";
+import PasswordField from "../components/PasswordField";
+import Screen from "../components/Screen";
+import SubmitButton from "../components/SubmitButton";
 
 import colors from "../config/colors";
 
@@ -21,49 +21,48 @@ const validationSchema = Yup.object().shape({
 
 function LoginScreen(props) {
   return (
-    <Screen style={styles.screen}>
-      <Image
-        style={styles.wave}
-        source={require("../assets/wave-colorP.png")}
-      />
+    <Screen>
+      <View style={styles.screen}>
+        <View style={styles.logo}>
+          <Image
+            style={styles.wave}
+            source={require("../assets/wave-colorP.png")}
+          />
+          <Image
+            source={require("../assets/logo-white.png")}
+            style={styles.image}
+          />
+        </View>
 
-      <View style={styles.logo}>
-        <Image
-          source={require("../assets/logo-white.png")}
-          style={styles.image}
-        />
+        <Formik
+          initialValues={{ username: "", password: "" }}
+          onSubmit={(values) => console.log(values)}
+          validationSchema={validationSchema}
+        >
+          {({ handleChange, errors }) => (
+            <>
+              <View style={styles.form}>
+                <AppTextInput
+                  icon={"account"}
+                  placeholder={"Username"}
+                  onChangeText={handleChange("username")}
+                  autoCorrect={false}
+                />
+                <ErrorMessage error={errors.username} />
+                <PasswordField
+                  placeholder={"password"}
+                  onChangeText={handleChange("password")}
+                  autoCorrect={false}
+                />
+                <ErrorMessage error={errors.password} />
+                <SubmitButton title={"Login"} />
+
+                <Text style={styles.text}>Forgot Password?</Text>
+              </View>
+            </>
+          )}
+        </Formik>
       </View>
-
-      <Formik
-        initialValues={{ username: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
-        validationSchema={validationSchema}
-      >
-        {({ handleChange, errors }) => (
-          <>
-            <View style={styles.form}>
-              <AppTextInput
-                icon={"account"}
-                placeholder={"Username"}
-                onChangeText={handleChange("username")}
-                autoCorrect={false}
-              />
-              <ErrorMessage error={errors.username} />
-              <AppTextInput
-                icon={"onepassword"}
-                placeholder={"password"}
-                onChangeText={handleChange("password")}
-                secureTextEntry
-                autoCorrect={false}
-              />
-              <ErrorMessage error={errors.password} />
-              <SubmitButton title={"Login"} />
-
-              <Text style={styles.text}>Forgot Password?</Text>
-            </View>
-          </>
-        )}
-      </Formik>
     </Screen>
   );
 }
@@ -71,41 +70,33 @@ function LoginScreen(props) {
 //Styling
 const styles = StyleSheet.create({
   form: {
-    //margin: 20,
-    marginTop: 100,
-    //padding: 20,
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 100,
   },
-
   image: {
     width: 150,
     height: 50,
-  },
-
-  wave: {
-    height: 250,
-    width: 700,
     position: "absolute",
-    top: Constants.statusBarHeight,
   },
-
   logo: {
     justifyContent: "center",
     alignItems: "center",
-    padding: 25,
     position: "absolute",
-    top: 85,
+    top: 0,
   },
-
+  screen: {
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+  },
   text: {
     fontSize: 10,
     color: colors.medium,
   },
-
-  screen: {
-    justifyContent: "center",
-    alignItems: "center",
+  wave: {
+    height: 200,
+    width: 650,
   },
 });
 
