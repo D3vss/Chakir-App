@@ -19,7 +19,12 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        screenOptions={{ headerTitle: (props) => <AppHeader {...props} /> }}
+        screenOptions={{
+          headerShadowVisible: false,
+          headerStyle: {
+            backgroundColor: colors.primary,
+          },
+        }}
       >
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen
