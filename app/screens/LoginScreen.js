@@ -6,7 +6,6 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 import AppTextInput from "../components/AppTextInput";
-import Constants from "expo-constants";
 import ErrorMessage from "../components/ErrorMessage";
 import PasswordField from "../components/PasswordField";
 import Screen from "../components/Screen";
@@ -23,16 +22,16 @@ function LoginScreen(props) {
   return (
     <Screen>
       <View style={styles.screen}>
-        <View style={styles.logo}>
+        {/* <View style={styles.logo}>
           <Image
             style={styles.wave}
-            source={require("../assets/wave-colorP.png")}
+            source={require("../assets/wave-main.png")}
           />
           <Image
             source={require("../assets/logo-white.png")}
             style={styles.image}
           />
-        </View>
+        </View> */}
 
         <Formik
           initialValues={{ username: "", password: "" }}

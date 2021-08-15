@@ -3,34 +3,27 @@ import { useState } from "react";
 
 import { View, Text, StyleSheet, Image } from "react-native";
 
-import * as Yup from "yup";
-import Constants from "expo-constants";
-import { Formik } from "formik";
-
-import AppTextInput from "../components/AppTextInput";
-import ErrorMessage from "../components/ErrorMessage";
 import Screen from "../components/Screen";
-import SubmitButton from "../components/SubmitButton";
 import AppButton from "../components/AppButton";
+import AppHeader from "../components/AppHeader";
 import colors from "../config/colors";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-function HomeScreen(props) {
+function HomeScreen({ navigation }) {
   const [username, setUsername] = useState("Username");
 
   return (
     <Screen>
-      <View style={styles.header}>
-        <Image
-          style={styles.wave}
-          source={require("../assets/wave-colorP.png")}
-        />
-        <Text style={styles.welcome}>Bienvenue, {username}</Text>
-      </View>
-
       <View style={styles.body}>
-        <AppTextInput />
-        <AppButton title={"Nouvelle Recherche"} />
-        <AppButton title={"Scanner le code"} />
+        <AppButton
+          title={"Recherche Manuelle"}
+          onPress={() => navigation.navigate("Recherche Manuelle")}
+        />
+        <AppButton
+          title={"Faire un scan"}
+          onPress={() => navigation.navigate("Scan")}
+        />
       </View>
     </Screen>
   );
@@ -40,20 +33,30 @@ const styles = StyleSheet.create({
   body: {
     justifyContent: "center",
     alignItems: "center",
+    paddingLeft: 40,
+    paddingRight: 40,
   },
 
   header: {
     justifyContent: "center",
     alignItems: "center",
   },
+  logo: {
+    width: 150,
+    height: 50,
+    position: "absolute",
+    top: 40,
+  },
 
   wave: {
-    height: 200,
+    height: 250,
     width: 700,
     //  position: "absolute",
   },
   welcome: {
     position: "absolute",
+    fontSize: 14,
+    color: colors.white,
   },
 });
 
