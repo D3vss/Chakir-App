@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
-import { View, Text, StyleSheet, Modal } from "react-native";
+import { View, Text, StyleSheet, Modal, Pressable } from "react-native";
+
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import * as Yup from "yup";
 import { Formik } from "formik";
@@ -49,12 +51,20 @@ const AC = [
 ];
 
 function RechercheManuelleScreen(props) {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const [searchValues, setSearchValues] = useState();
+  const [carOwners, setCarOwners] = useState();
+
   return (
     <Screen>
       <View style={styles.body}>
         <Formik
           initialValues={{ nev: "", ac: "", regionId: "", pv: "", vin: "" }}
-          onSubmit={(values) => console.log(values.ac)}
+          onSubmit={(values) => {
+            setSearchValues(values);
+            console.log(searchValues);
+          }}
           validationSchema={validationSchema}
         >
           {({ handleChange, handleSubmit, errors }) => (
@@ -100,11 +110,34 @@ function RechercheManuelleScreen(props) {
                 />
                 <ErrorMessage error={errors.vin} />
               </View>
-              <AppButton title={"Rechercher"} onPress={handleSubmit} />
+              <AppButton
+                title={"Rechercher"}
+                onPress={() => {
+                  handleSubmit();
+                  setModalVisible(!modalVisible);
+                }}
+              />
             </>
           )}
         </Formik>
-        <Modal></Modal>
+        <Modal visible={modalVisible}>
+          <Pressable
+            onPress={() => setModalVisible(!modalVisible)}
+            style={styles.closeButton}
+          >
+            <MaterialCommunityIcons
+              name={"close-circle"}
+              size={32}
+              color={colors.medium}
+            />
+          </Pressable>
+          <View>
+            <Text>
+              Matricule: {searchValues["nev"]} | {searchValues["nev"]} |{" "}
+              {searchValues["ac"]}
+            </Text>
+          </View>
+        </Modal>
       </View>
     </Screen>
   );
