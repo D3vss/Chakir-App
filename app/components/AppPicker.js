@@ -1,123 +1,102 @@
-import React from "react";
-import { Text, View, StyleSheet, Pressable, Modal } from "react-native";
+import React, { useState } from "react";
 
+//Importing core components
+import {
+  Text,
+  View,
+  StyleSheet,
+  Pressable,
+  TouchableOpacity,
+  Modal,
+  FlatList,
+} from "react-native";
+
+//Importing costum components
+import AppPickerField from "./AppPickerField";
+
+//Importing icons
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
+//Importing config files
 import colors from "../config/colors";
-import { useState } from "react";
 
-function AppPicker({ ...otherProps }) {
-  const [value, setValue] = useState("AC");
+function AppPicker({ placeholder, onSelectedItem, data }) {
+  const [value, setValue] = useState(placeholder);
   const [modalVisible, setModalVisible] = useState(false);
   return (
-    <View style={styles.modalContainer}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.modal}>
-          <Pressable onPress={() => setModalVisible(false)}>
-            <MaterialCommunityIcons
-              name={"close-box"}
-              size={30}
-              style={styles.closeModalButton}
-              color={colors.medium}
-            />
-          </Pressable>
-          <Pressable
-            style={styles.pickerfield}
-            onPress={() => {
-              setModalVisible(false);
-              setValue("أ");
-            }}
-          >
-            <Text>أ</Text>
-          </Pressable>
-
-          <Pressable
-            style={styles.pickerfield}
-            onPress={() => {
-              setModalVisible(false);
-              setValue("ه");
-            }}
-          >
-            <Text>ه</Text>
-          </Pressable>
-
-          <Pressable
-            style={styles.pickerfield}
-            onPress={() => {
-              setModalVisible(false);
-              setValue("د");
-            }}
-          >
-            <Text>د</Text>
-          </Pressable>
-        </View>
-      </Modal>
-
-      <Pressable
+    <View style={styles.viewContainer}>
+      <TouchableOpacity
         style={styles.container}
         onPress={() => setModalVisible(!modalVisible)}
       >
+        <Text style={styles.valueField}>{value}</Text>
         <MaterialCommunityIcons
-          color={colors.medium}
           name={"arrow-down-drop-circle"}
-          size={20}
+          size={24}
           style={styles.icon}
+          color={colors.medium}
         />
-        <Text style={styles.text} {...otherProps}>
-          {value}
-        </Text>
-      </Pressable>
+      </TouchableOpacity>
+      <Modal
+        animationType={"slide"}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(!modalVisible)}
+      >
+        <View style={styles.modal}>
+          <Pressable
+            onPress={() => setModalVisible(!modalVisible)}
+            style={styles.closeButton}
+          >
+            <MaterialCommunityIcons
+              name={"close-circle"}
+              size={32}
+              color={colors.medium}
+            />
+          </Pressable>
+          <FlatList
+            data={data}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <AppPickerField
+                value={item.label}
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                  setValue(item.label);
+                  onSelectedItem(item);
+                }}
+              />
+            )}
+          />
+        </View>
+      </Modal>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.lightgrey,
-    borderRadius: 15,
+    width: "100%",
+    padding: 10,
     flexDirection: "row",
-    // width: "100%",
-    padding: 20,
+    borderRadius: 25,
     alignItems: "center",
-    height: 60,
   },
-
-  pickerfield: {
-    margin: 5,
-    height: 40,
-    backgroundColor: colors.lightgrey,
-    borderRadius: 20,
-    width: "90%",
-    alignItems: "center",
-    alignSelf: "center",
-    justifyContent: "center",
+  closeButton: {
+    alignSelf: "flex-end",
   },
   icon: {
-    marginLeft: 5,
+    alignSelf: "flex-end",
   },
-
-  modal: {
-    backgroundColor: colors.white,
+  valueField: {
+    color: colors.medium,
+    alignSelf: "center",
     flex: 1,
   },
-
-  modalContainer: {
-    //  width: "100%",
+  viewContainer: {
+    width: "100%",
   },
-
-  closeModalButton: {
-    position: "relative",
-    left: 10,
-    margin: 10,
-    marginTop: 20,
+  modal: {
+    padding: 15,
   },
 });
-
 export default AppPicker;

@@ -1,24 +1,23 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Modal } from "react-native";
 
 import * as Yup from "yup";
 import { Formik } from "formik";
 
 import AppTextInput from "../components/AppTextInput";
+import AppFormPicker from "../components/AppFormPicker";
 import ErrorMessage from "../components/ErrorMessage";
-import SubmitButton from "../components/SubmitButton";
-import ThreeFieldInput from "../components/ThreeFieldsInput";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
+import AppButton from "../components/AppButton";
 
 const validationSchema = Yup.object()
   .shape({
     nev: Yup.number().positive().max(99999).min(1).label("NEV"),
     regionId: Yup.number().max(89).min(1).label("Region Id"),
-    pv: Yup.number().max(4).label("PV"),
-    vin: Yup.number().max(4).label("VIN"),
+    pv: Yup.number().max(99999).label("PV"),
+    vin: Yup.number().max(99999).label("VIN"),
   })
   .test(
     "at-least-one-number",
@@ -26,38 +25,63 @@ const validationSchema = Yup.object()
     (value) => !!(value.nev || value.regionId || value.pv || value.vin)
   );
 
+const AC = [
+  {
+    id: 1,
+    label: "أ",
+  },
+  {
+    id: 2,
+    label: "ب",
+  },
+  {
+    id: 3,
+    label: "ه",
+  },
+  {
+    id: 4,
+    label: "د",
+  },
+  {
+    id: 5,
+    label: "و",
+  },
+];
+
 function RechercheManuelleScreen(props) {
   return (
     <Screen>
-      {/* <View style={styles.header}>
-        <Image
-          style={styles.wave}
-          source={require("../assets/wave-main.png")}
-        />
-        <Image
-          style={styles.logo}
-          source={require("../assets/logo-white.png")}
-        />
-        <Text style={styles.welcome}>Recherche Manuelle</Text>
-      </View> */}
-
       <View style={styles.body}>
         <Formik
-          initialValues={{ nev: "", regionId: "", pv: "", vin: "" }}
-          onSubmit={(values) => console.log(values)}
+          initialValues={{ nev: "", ac: "", regionId: "", pv: "", vin: "" }}
+          onSubmit={(values) => console.log(values.ac)}
           validationSchema={validationSchema}
         >
-          {({ handleChange, errors }) => (
+          {({ handleChange, handleSubmit, errors }) => (
             <>
               <View style={styles.form}>
                 <Text style={styles.label}>Matricule:</Text>
-                <ThreeFieldInput
-                  fieldOne={handleChange("nev")}
-                  fieldTwo={handleChange("regionId")}
-                />
+
+                <View style={styles.matricule}>
+                  <AppTextInput
+                    style={styles.formField}
+                    placeholder={"NEV"}
+                    onChangeText={handleChange("nev")}
+                  />
+                  <AppFormPicker
+                    name={"ac"}
+                    data={AC}
+                    style={styles.formField}
+                    placeholder={"AC"}
+                  />
+                  <AppTextInput
+                    style={styles.formField}
+                    placeholder={"Region ID"}
+                    onChangeText={handleChange("regionId")}
+                  />
+                </View>
 
                 <ErrorMessage error={errors.nev} />
-                <ErrorMessage error={errors.ac} />
                 <ErrorMessage error={errors.regionId} />
 
                 <Text style={styles.label}>PV:</Text>
@@ -75,12 +99,12 @@ function RechercheManuelleScreen(props) {
                   autoCorrect={false}
                 />
                 <ErrorMessage error={errors.vin} />
-
-                <SubmitButton title={"Rechercher"} />
               </View>
+              <AppButton title={"Rechercher"} onPress={handleSubmit} />
             </>
           )}
         </Formik>
+        <Modal></Modal>
       </View>
     </Screen>
   );
@@ -105,6 +129,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+
+  matricule: {
+    alignItems: "center",
+    width: "100%",
+  },
+
+  formField: {
+    width: "100%",
+  },
+
   logo: {
     width: 150,
     height: 50,

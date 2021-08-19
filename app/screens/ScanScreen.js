@@ -9,7 +9,6 @@ import colors from "../config/colors";
 
 function HomeScreen(props) {
   const [hasPermission, setHasPermission] = useState(null);
-  const [type, setType] = useState(Camera.Constants.Type.back);
 
   useEffect(() => {
     (async () => {

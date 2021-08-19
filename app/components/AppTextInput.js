@@ -29,12 +29,13 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 15,
     alignItems: "center",
-    marginTop: 20,
+    marginBottom: 5,
+    marginTop: 5,
   },
   textInput: {
     fontSize: 18,
     fontFamily: "Roboto",
-    width: "80%",
+    width: "100%",
   },
   icon: {
     marginRight: 10,

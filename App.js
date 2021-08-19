@@ -2,39 +2,26 @@ import React from "react";
 
 //Screens
 import HomeScreen from "./app/screens/HomeScreen";
-import LoginScreen from "./app/screens/LoginScreen";
 import RechercheManuelleScreen from "./app/screens/RechercheManuelleScreen";
-import ScanScreen from "./app/screens/ScanScreen";
-import AppHeader from "./app/components/AppHeader";
-//Navigation tools
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AppPicker from "./app/components/AppPicker";
+import Screen from "./app/components/Screen";
+import { Button } from "react-native";
 
-import { StyleSheet } from "react-native";
-import colors from "./app/config/colors";
-
-const Stack = createNativeStackNavigator();
+const DATA = [
+  {
+    id: 1,
+    label: "item1",
+  },
+  {
+    id: 2,
+    label: "item2",
+  },
+  {
+    id: 3,
+    label: "item3",
+  },
+];
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShadowVisible: false,
-          headerStyle: {
-            backgroundColor: colors.primary,
-          },
-        }}
-      >
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen
-          name="Recherche Manuelle"
-          component={RechercheManuelleScreen}
-        />
-        <Stack.Screen name="Scan" component={ScanScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  return <RechercheManuelleScreen />;
 }
-
-const styles = StyleSheet.create({});
