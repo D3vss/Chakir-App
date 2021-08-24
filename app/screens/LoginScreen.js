@@ -9,9 +9,10 @@ import AppTextInput from "../components/AppTextInput";
 import ErrorMessage from "../components/ErrorMessage";
 import PasswordField from "../components/PasswordField";
 import Screen from "../components/Screen";
-import SubmitButton from "../components/SubmitButton";
+//import SubmitButton from "../components/SubmitButton";
 
 import colors from "../config/colors";
+import AppButton from "../components/AppButton";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required().label("Username"),
@@ -22,23 +23,14 @@ function LoginScreen(props) {
   return (
     <Screen>
       <View style={styles.screen}>
-        {/* <View style={styles.logo}>
-          <Image
-            style={styles.wave}
-            source={require("../assets/wave-main.png")}
-          />
-          <Image
-            source={require("../assets/logo-white.png")}
-            style={styles.image}
-          />
-        </View> */}
+        <View></View>
 
         <Formik
           initialValues={{ username: "", password: "" }}
           onSubmit={(values) => console.log(values)}
           validationSchema={validationSchema}
         >
-          {({ handleChange, errors }) => (
+          {({ handleSubmit, handleChange, errors }) => (
             <>
               <View style={styles.form}>
                 <AppTextInput
@@ -54,8 +46,7 @@ function LoginScreen(props) {
                   autoCorrect={false}
                 />
                 <ErrorMessage error={errors.password} />
-                <SubmitButton title={"Login"} />
-
+                <AppButton title={"Login"} onPress={handleSubmit} />
                 <Text style={styles.text}>Forgot Password?</Text>
               </View>
             </>

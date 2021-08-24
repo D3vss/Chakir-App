@@ -2,6 +2,7 @@ import React from "react";
 
 //Screens
 import HomeScreen from "./app/screens/HomeScreen";
+import LoginScreen from "./app/screens/LoginScreen";
 import RechercheManuelleScreen from "./app/screens/RechercheManuelleScreen";
 import AppPicker from "./app/components/AppPicker";
 import Screen from "./app/components/Screen";

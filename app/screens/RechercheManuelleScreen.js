@@ -13,6 +13,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
 import AppButton from "../components/AppButton";
+import { useFormikContext } from "formik";
 
 const validationSchema = Yup.object()
   .shape({
@@ -64,6 +65,7 @@ function RechercheManuelleScreen(props) {
           onSubmit={(values) => {
             setSearchValues(values);
             console.log(searchValues);
+            console.log(values);
           }}
           validationSchema={validationSchema}
         >
@@ -71,7 +73,6 @@ function RechercheManuelleScreen(props) {
             <>
               <View style={styles.form}>
                 <Text style={styles.label}>Matricule:</Text>
-
                 <View style={styles.matricule}>
                   <AppTextInput
                     style={styles.formField}
@@ -90,10 +91,8 @@ function RechercheManuelleScreen(props) {
                     onChangeText={handleChange("regionId")}
                   />
                 </View>
-
-                <ErrorMessage error={errors.nev} />
+                <ErrorMessage error={errors.nev} />s
                 <ErrorMessage error={errors.regionId} />
-
                 <Text style={styles.label}>PV:</Text>
                 <AppTextInput
                   placeholder={""}
@@ -101,7 +100,6 @@ function RechercheManuelleScreen(props) {
                   autoCorrect={false}
                 />
                 <ErrorMessage error={errors.pv} />
-
                 <Text style={styles.label}>VIN:</Text>
                 <AppTextInput
                   placeholder={""}
@@ -132,10 +130,7 @@ function RechercheManuelleScreen(props) {
             />
           </Pressable>
           <View>
-            <Text>
-              Matricule: {searchValues["nev"]} | {searchValues["nev"]} |{" "}
-              {searchValues["ac"]}
-            </Text>
+            <Text>Matricule: {searchValues["nev"]} </Text>
           </View>
         </Modal>
       </View>
