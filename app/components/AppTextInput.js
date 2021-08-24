@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     fontSize: 18,
-    fontFamily: "Roboto",
     width: "100%",
   },
   icon: {
