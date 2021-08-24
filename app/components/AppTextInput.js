@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     fontSize: 18,
-    width: "100%",
+    width: "80%",
   },
   icon: {
     marginRight: 10,
