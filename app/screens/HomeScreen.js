@@ -1,18 +1,18 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { View, Text, StyleSheet, Image, Button } from "react-native";
 
+import AppButton from "../components/AppButton";
 import Screen from "../components/Screen";
-import AppHeader from "../components/AppHeader";
+
 import colors from "../config/colors";
 
 function HomeScreen({ navigation }) {
   return (
     <Screen>
       <View style={styles.body}>
-        <Button title={"Recherche Manuelle"} />
-        <Button title={"Faire un scan"} />
+        <AppButton title={"Recherche Manuelle"} />
+        <AppButton title={"Faire un scan"} />
       </View>
     </Screen>
   );

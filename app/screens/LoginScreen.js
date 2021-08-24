@@ -9,7 +9,6 @@ import AppTextInput from "../components/AppTextInput";
 import ErrorMessage from "../components/ErrorMessage";
 import PasswordField from "../components/PasswordField";
 import Screen from "../components/Screen";
-//import SubmitButton from "../components/SubmitButton";
 
 import colors from "../config/colors";
 import AppButton from "../components/AppButton";

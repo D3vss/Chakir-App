@@ -91,7 +91,7 @@ function RechercheManuelleScreen(props) {
                     onChangeText={handleChange("regionId")}
                   />
                 </View>
-                <ErrorMessage error={errors.nev} />s
+                <ErrorMessage error={errors.nev} />
                 <ErrorMessage error={errors.regionId} />
                 <Text style={styles.label}>PV:</Text>
                 <AppTextInput
@@ -129,9 +129,7 @@ function RechercheManuelleScreen(props) {
               color={colors.medium}
             />
           </Pressable>
-          <View>
-            <Text>Matricule: {searchValues["nev"]} </Text>
-          </View>
+          <View></View>
         </Modal>
       </View>
     </Screen>
