@@ -1,51 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 
-//Screens
-import HomeScreen from "./app/screens/HomeScreen";
-import LoginScreen from "./app/screens/LoginScreen";
-import RechercheManuelleScreen from "./app/screens/RechercheManuelleScreen";
-import AppPicker from "./app/components/AppPicker";
 import Screen from "./app/components/Screen";
 import Constants from "expo-constants";
 
-import {
-  View,
-  StyleSheet,
-  Animated,
-  Dimensions,
-  FlatList,
-  Pressable,
-} from "react-native";
+import { View, StyleSheet, Animated, Dimensions } from "react-native";
 import colors from "./app/config/colors";
 import AppButton from "./app/components/AppButton";
+
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import colors from "../config/colors";
 
-import AppPickerField from "./app/components/AppPickerField";
-
-const data = [
-  {
-    id: 1,
-    label: "أ",
-  },
-  {
-    id: 2,
-    label: "ب",
-  },
-  {
-    id: 3,
-    label: "ه",
-  },
-  {
-    id: 4,
-    label: "د",
-  },
-  {
-    id: 5,
-    label: "و",
-  },
-];
-
-export default function App() {
+function AppSlidingMenu({ data }) {
   const transAnim = useRef(new Animated.Value(0)).current;
 
   const translateLeft = () => {
@@ -64,7 +29,31 @@ export default function App() {
     }).start();
   };
 
-  return <HomeScreen />;
+  return (
+    <Screen>
+      <Animated.View
+        style={[
+          styles.slider,
+          {
+            transform: [{ translateX: transAnim }],
+          },
+        ]}
+      >
+        <MaterialCommunityIcons
+          name={"close-circle"}
+          size={32}
+          color={colors.medium}
+        />
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <AppPickerField value={item.label} onPress={() => {}} />
+          )}
+        />
+      </Animated.View>
+    </Screen>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -92,3 +81,5 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
 });
+
+export default AppSlidingMenu;

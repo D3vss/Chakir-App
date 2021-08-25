@@ -1,26 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import {
-  View,
-  Text,
-  StyleSheet,
+  Animated,
+  Dimensions,
+  FlatList,
   Image,
-  Button,
+  Pressable,
+  StyleSheet,
+  Text,
   TouchableOpacity,
-  Modal,
+  View,
 } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Constants from "expo-constants";
 
-import AppButton from "../components/AppButton";
-import Screen from "../components/Screen";
-
-import colors from "../config/colors";
+//Custom Comps
+import AppPickerField from "../components/AppPickerField";
 import Appwidget from "../components/Appwidget";
+import Screen from "../components/Screen";
+//Configs
+import colors from "../config/colors";
 
+const data = [
+  {
+    id: 1,
+    label: "Settings1",
+  },
+  {
+    id: 2,
+    label: "Settings2",
+  },
+  {
+    id: 3,
+    label: "Settings3",
+  },
+];
+
+//Render Function
 function HomeScreen({ navigation }) {
   const [userName, setUserName] = useState("Username");
+
+  // Functions to handle the settings menu animations
+
+  //Define the changing value
+  const transAnim = useRef(new Animated.Value(0)).current;
+
+  //hide
+  const translateLeft = () => {
+    Animated.timing(transAnim, {
+      toValue: -Dimensions.get("window").width / 2,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+  };
+  //Show
+  const translateRight = () => {
+    Animated.timing(transAnim, {
+      toValue: Dimensions.get("window").width / 2,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+  };
+  //End
+
   return (
     <Screen>
       {/* Header */}
@@ -28,7 +72,10 @@ function HomeScreen({ navigation }) {
         colors={[colors.Bluegradient1st, colors.Bluegradient2nd]}
         style={styles.header}
       >
-        <TouchableOpacity style={styles.settingsButton}>
+        <TouchableOpacity
+          style={styles.settingsButton}
+          onPress={translateRight}
+        >
           <MaterialCommunityIcons
             name={"dots-horizontal"}
             size={24}
@@ -42,6 +89,36 @@ function HomeScreen({ navigation }) {
         <Text style={styles.welcome}>Bienvenue, {userName}</Text>
       </LinearGradient>
 
+      {/* Animated menu settings */}
+      <Animated.View
+        style={[
+          styles.slider,
+          {
+            transform: [{ translateX: transAnim }],
+          },
+        ]}
+      >
+        <Pressable onPress={translateLeft} style={styles.closeMenuButton}>
+          <View style={styles.closeMenuView}>
+            <MaterialCommunityIcons
+              name={"arrow-left-circle"}
+              size={32}
+              color={colors.medium}
+            />
+            <Text style={styles.closeMenuText}>Home</Text>
+          </View>
+        </Pressable>
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <AppPickerField value={item.label} onPress={() => {}} />
+          )}
+        />
+      </Animated.View>
+      {/*End of Animated menu settings */}
+      {/*End Header*/}
+
       {/* Body */}
       <View style={styles.body}>
         <Appwidget
@@ -53,8 +130,10 @@ function HomeScreen({ navigation }) {
           title={"Faire un scan"}
           icon={"barcode-scan"}
           onPress={() => console.log("Scan")}
+          style={styles.AppPickerField}
         />
       </View>
+      {/*End Body*/}
     </Screen>
   );
 }
@@ -96,8 +175,36 @@ const styles = StyleSheet.create({
   },
   settingsButton: {
     position: "absolute",
-    right: 20,
+    left: 20,
     top: 10,
+  },
+
+  slider: {
+    opacity: 0.9,
+    backgroundColor: colors.lightgrey,
+    flex: 1,
+    position: "absolute",
+    top: Constants.statusBarHeight,
+    bottom: 0,
+    left: -Dimensions.get("window").width / 2,
+    right: 0,
+    width: Dimensions.get("window").width / 2,
+    alignSelf: "flex-end",
+    elevation: 20,
+    borderTopRightRadius: 15,
+    borderBottomRightRadius: 15,
+  },
+  closeMenuButton: {
+    margin: 10,
+    alignSelf: "flex-start",
+  },
+  closeMenuView: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  closeMenuText: {
+    fontWeight: "bold",
+    marginLeft: 5,
   },
 });
 
