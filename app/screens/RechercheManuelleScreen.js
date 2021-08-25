@@ -65,7 +65,6 @@ function RechercheManuelleScreen(props) {
           onSubmit={(values) => {
             setSearchValues(values);
             console.log(searchValues);
-            console.log(values);
           }}
           validationSchema={validationSchema}
         >
@@ -129,7 +128,9 @@ function RechercheManuelleScreen(props) {
               color={colors.medium}
             />
           </Pressable>
-          <View></View>
+          <View>
+            <View></View>
+          </View>
         </Modal>
       </View>
     </Screen>

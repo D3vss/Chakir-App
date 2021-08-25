@@ -24,5 +24,5 @@ const DATA = [
 ];
 
 export default function App() {
-  return <RechercheManuelleScreen />;
+  return <HomeScreen />;
 }
