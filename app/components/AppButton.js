@@ -13,13 +13,13 @@ function AppButton({ title, onPress }) {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.Bluegradient2nd,
     borderRadius: 25,
     padding: 15,
     justifyContent: "center",
     alignItems: "center",
-    margin: 15,
-    width: 200,
+    marginTop: 15,
+    width: "100%",
   },
 
   text: {
