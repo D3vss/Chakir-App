@@ -60,8 +60,6 @@ const AC = [
 ];
 
 function RechercheManuelleScreen({ navigation }) {
-  const [modalVisible, setModalVisible] = useState(false);
-
   const [searchValues, setSearchValues] = useState();
   const [carOwners, setCarOwners] = useState();
 
@@ -92,7 +90,7 @@ function RechercheManuelleScreen({ navigation }) {
           initialValues={{ nev: "", ac: "", regionId: "", pv: "", vin: "" }}
           onSubmit={(values) => {
             setSearchValues(values);
-            console.log(searchValues);
+            navigation.navigate("SearchEnd");
           }}
           validationSchema={validationSchema}
         >
@@ -135,31 +133,10 @@ function RechercheManuelleScreen({ navigation }) {
                 />
                 <ErrorMessage error={errors.vin} />
               </View>
-              <AppButton
-                title={"Rechercher"}
-                onPress={() => {
-                  handleSubmit();
-                  setModalVisible(!modalVisible);
-                }}
-              />
+              <AppButton title={"Rechercher"} onPress={handleSubmit} />
             </>
           )}
         </Formik>
-        <Modal visible={modalVisible}>
-          <Pressable
-            onPress={() => setModalVisible(!modalVisible)}
-            style={styles.closeButton}
-          >
-            <MaterialCommunityIcons
-              name={"close-circle"}
-              size={32}
-              color={colors.medium}
-            />
-          </Pressable>
-          <View>
-            <View></View>
-          </View>
-        </Modal>
       </View>
     </Screen>
   );

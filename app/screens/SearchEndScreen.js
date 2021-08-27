@@ -1,21 +1,43 @@
 import React from "react";
 import { useState } from "react";
 
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, FlatList } from "react-native";
 import AppButton from "../components/AppButton";
-
+import { LinearGradient } from "expo-linear-gradient";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
-
-function SearchEndScreen(props) {
+const data = [
+  {
+    id: 1,
+    label: "Prop 1",
+  },
+  {
+    id: 2,
+    label: "Prop 1",
+  },
+  {
+    id: 3,
+    label: "Prop 1",
+  },
+];
+function SearchEndScreen({ navigation }) {
   const [carOwner, setCarOwner] = useState([]);
   return (
     <Screen>
       <View style={styles.body}>
-        <View>
-          <Text>Test</Text>
-        </View>
-        <AppButton title={"more info"} />
+        <LinearGradient
+          colors={[colors.lightgrey, colors.lightgrey]}
+          style={styles.infoCard}
+        >
+          <FlatList
+            data={data}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <Text style={styles.field}>{item.label}</Text>
+            )}
+          />
+        </LinearGradient>
+        <AppButton title={"Retour"} onPress={() => navigation.goBack()} />
       </View>
     </Screen>
   );
@@ -25,30 +47,18 @@ const styles = StyleSheet.create({
   body: {
     justifyContent: "center",
     alignItems: "center",
-    paddingLeft: 40,
-    paddingRight: 40,
+    padding: 40,
   },
-
-  header: {
-    justifyContent: "center",
-    alignItems: "center",
+  infoCard: {
+    backgroundColor: colors.lightgrey,
+    height: "85%",
+    width: "100%",
+    borderRadius: 15,
+    padding: 20,
   },
-  logo: {
-    width: 150,
-    height: 50,
-    position: "absolute",
-    top: 40,
-  },
-
-  wave: {
-    height: 250,
-    width: 700,
-    //  position: "absolute",
-  },
-  welcome: {
-    position: "absolute",
-    fontSize: 14,
-    color: colors.white,
+  field: {
+    marginTop: 10,
+    fontSize: 18,
   },
 });
 

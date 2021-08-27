@@ -5,17 +5,17 @@ import HomeScreen from "../screens/HomeScreen";
 import LoginScreen from "../screens/LoginScreen";
 import RechercheManuelleScreen from "../screens/RechercheManuelleScreen";
 import ScanScreen from "../screens/ScanScreen";
-import SearchEndScreen from "../screens/SearchEndScreen";
 
 const Stack = createStackNavigator();
 
-const RechercheNavigator = () => {
+const HomeNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Login" component={HomeScreen} />
       <Stack.Screen name="RM" component={RechercheManuelleScreen} />
-      <Stack.Screen name="SearchEnd" component={SearchEndScreen} />
+      <Stack.Screen name="Scan" component={ScanScreen} />
     </Stack.Navigator>
   );
 };
 
-export default RechercheNavigator;
+export default HomeNavigator;

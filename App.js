@@ -25,11 +25,14 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import AppPickerField from "./app/components/AppPickerField";
 import { NavigationContainer } from "@react-navigation/native";
+import HomeNavigator from "./app/navigation/HomeNavigator";
+import SearchEndScreen from "./app/screens/SearchEndScreen";
 import RechercheNavigator from "./app/navigation/RechercheNavigator";
 
 export default function App() {
   return (
     <NavigationContainer>
+      <HomeNavigator />
       <RechercheNavigator />
     </NavigationContainer>
   );
