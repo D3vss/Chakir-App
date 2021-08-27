@@ -38,7 +38,7 @@ function LoginScreen({ navigation }) {
           initialValues={{ username: "", password: "" }}
           onSubmit={(values) => {
             console.log(values);
-            navigation.navigate("Home", { username: values.username });
+            navigation.navigate("HomeScreen", { username: values.username });
           }}
           validationSchema={validationSchema}
         >

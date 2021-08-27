@@ -30,6 +30,7 @@ import SearchEndScreen from "./app/screens/SearchEndScreen";
 import RechercheNavigator from "./app/navigation/RechercheNavigator";
 import LoadingScreen from "./app/screens/LoadingScreen";
 import ScanScreen from "./app/screens/ScanScreen";
+import NavigationHandler from "./app/navigation/NavigationHandler";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,7 +44,7 @@ export default function App() {
     <LoadingScreen />
   ) : (
     <NavigationContainer>
-      <AuthNavigator />
+      <NavigationHandler />
     </NavigationContainer>
   );
 }

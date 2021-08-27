@@ -30,7 +30,8 @@ function ScanScreen({ navigation }) {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`${data}`);
+    navigation.naviate("SearchEnd");
+    // alert(`${data}`);
   };
 
   if (hasPermission === null) {

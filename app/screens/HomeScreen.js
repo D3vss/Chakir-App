@@ -84,9 +84,7 @@ function HomeScreen({ navigation, route }) {
           source={require("../assets/logo-white.png")}
           style={styles.logo}
         />
-        <Text style={styles.welcome}>
-          Bienvenue, Simo{/*route.params.username*/}
-        </Text>
+        <Text style={styles.welcome}>Bienvenue, {route.params.username}</Text>
       </LinearGradient>
 
       {/* Animated menu settings */}
@@ -124,12 +122,12 @@ function HomeScreen({ navigation, route }) {
         <Appwidget
           title={"Recherche Manuelle"}
           icon={"folder-search"}
-          onPress={() => navigation.navigate("RechercheNav")}
+          onPress={() => navigation.navigate("RechercheManuelle")}
         />
         <Appwidget
           title={"Faire un scan"}
           icon={"barcode-scan"}
-          onPress={() => navigation.navigate("ScanNav")}
+          onPress={() => navigation.navigate("ScanScreen")}
           style={styles.AppPickerField}
         />
       </View>
