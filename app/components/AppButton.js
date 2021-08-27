@@ -1,12 +1,22 @@
 import React from "react";
-import { TouchableOpacity, StyleSheet, Text } from "react-native";
+import {
+  TouchableOpacity,
+  StyleSheet,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 
 import colors from "../config/colors";
 
-function AppButton({ title, onPress }) {
+function AppButton({ title, onPress, isSubmitting = false }) {
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Text style={styles.text}> {title} </Text>
+    <TouchableOpacity
+      style={styles.button}
+      disabled={isSubmitting}
+      onPress={onPress}
+    >
+      {!isSubmitting && <Text style={styles.text}> {title} </Text>}
+      {isSubmitting && <ActivityIndicator size="small" color="white" />}
     </TouchableOpacity>
   );
 }

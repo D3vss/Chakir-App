@@ -15,6 +15,8 @@ import Screen from "../components/Screen";
 import colors from "../config/colors";
 import AppButton from "../components/AppButton";
 
+import { loginHandler } from "../api/auth";
+
 const validationSchema = Yup.object().shape({
   username: Yup.string().required().label("Username"),
   password: Yup.string().required().min(6).label("Password"),
@@ -36,13 +38,16 @@ function LoginScreen({ navigation }) {
 
         <Formik
           initialValues={{ username: "", password: "" }}
-          onSubmit={(values) => {
-            console.log(values);
-            navigation.navigate("HomeScreen", { username: values.username });
+          onSubmit={(values, { setSubmitting }) => {
+            loginHandler(
+              { email: values.username, password: values.password },
+              navigation,
+              setSubmitting
+            );
           }}
           validationSchema={validationSchema}
         >
-          {({ handleSubmit, handleChange, errors }) => (
+          {({ handleSubmit, handleChange, errors, isSubmitting }) => (
             <>
               <LinearGradient
                 colors={[colors.sky2, colors.lightgrey]}
@@ -63,8 +68,16 @@ function LoginScreen({ navigation }) {
                     autoCorrect={false}
                   />
                   <ErrorMessage error={errors.password} />
-                  <AppButton title={"Login"} onPress={handleSubmit} />
-
+                  {!isSubmitting && (
+                    <AppButton title={"Login"} onPress={handleSubmit} />
+                  )}
+                  {isSubmitting && (
+                    <AppButton
+                      title={"Loading"}
+                      isSubmitting
+                      onPress={handleSubmit}
+                    />
+                  )}
                   <Text style={styles.text}>Forgot Password?</Text>
                 </View>
               </LinearGradient>

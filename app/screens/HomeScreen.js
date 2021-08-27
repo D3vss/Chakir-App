@@ -40,6 +40,9 @@ const data = [
 
 //Render Function
 function HomeScreen({ navigation, route }) {
+  //* Getting The User Info from The Login Screen
+  const { last_name, first_name } = route.params;
+
   // Functions to handle the settings menu animations
 
   //Define the changing value
@@ -84,7 +87,7 @@ function HomeScreen({ navigation, route }) {
           source={require("../assets/logo-white.png")}
           style={styles.logo}
         />
-        <Text style={styles.welcome}>Bienvenue, {route.params.username}</Text>
+        <Text style={styles.welcome}>Bienvenue, {first_name}</Text>
       </LinearGradient>
 
       {/* Animated menu settings */}
