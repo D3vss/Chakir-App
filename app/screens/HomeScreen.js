@@ -26,15 +26,15 @@ import colors from "../config/colors";
 const data = [
   {
     id: 1,
-    label: "Settings1",
+    label: "Settings",
   },
   {
     id: 2,
-    label: "Settings2",
+    label: "About Us",
   },
   {
     id: 3,
-    label: "Settings3",
+    label: "Log Out",
   },
 ];
 
@@ -144,7 +144,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingLeft: 40,
     paddingRight: 40,
-    backgroundColor: colors.lightgreen,
     flex: 1,
   },
 
@@ -162,11 +161,6 @@ const styles = StyleSheet.create({
     top: 40,
   },
 
-  wave: {
-    height: 250,
-    width: 700,
-    //  position: "absolute",
-  },
   welcome: {
     position: "absolute",
     fontSize: 14,

@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 
-import { View, Text, StyleSheet, Modal, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Modal,
+  Pressable,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -13,7 +21,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
 import AppButton from "../components/AppButton";
-import { useFormikContext } from "formik";
+import { LinearGradient } from "expo-linear-gradient";
 
 const validationSchema = Yup.object()
   .shape({
@@ -51,7 +59,7 @@ const AC = [
   },
 ];
 
-function RechercheManuelleScreen(props) {
+function RechercheManuelleScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
 
   const [searchValues, setSearchValues] = useState();
@@ -59,6 +67,26 @@ function RechercheManuelleScreen(props) {
 
   return (
     <Screen>
+      <LinearGradient
+        colors={[colors.Bluegradient1st, colors.Bluegradient2nd]}
+        style={styles.header}
+      >
+        <TouchableOpacity
+          style={styles.settingsButton}
+          onPress={() => navigation.goBack()}
+        >
+          <MaterialCommunityIcons
+            name={"arrow-left-circle"}
+            size={32}
+            color={"white"}
+          />
+        </TouchableOpacity>
+        <Image
+          source={require("../assets/logo-white.png")}
+          style={styles.logo}
+        />
+      </LinearGradient>
+
       <View style={styles.body}>
         <Formik
           initialValues={{ nev: "", ac: "", regionId: "", pv: "", vin: "" }}
@@ -143,7 +171,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingLeft: 10,
     paddingRight: 10,
+    flex: 1,
   },
+  header: {
+    height: "20%",
+    justifyContent: "center",
+    alignItems: "center",
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+  },
+  logo: {
+    width: 150,
+    height: 50,
+    position: "absolute",
+    top: 40,
+  },
+  settingsButton: {
+    position: "absolute",
+    left: 20,
+    top: 10,
+  },
+
   form: {
     justifyContent: "center",
     alignItems: "center",
@@ -151,10 +199,6 @@ const styles = StyleSheet.create({
 
   label: {
     alignSelf: "flex-start",
-  },
-  header: {
-    justifyContent: "center",
-    alignItems: "center",
   },
 
   matricule: {
@@ -166,18 +210,6 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 
-  logo: {
-    width: 150,
-    height: 50,
-    position: "absolute",
-    top: 40,
-  },
-
-  wave: {
-    height: 200,
-    width: 700,
-    //  position: "absolute",
-  },
   welcome: {
     position: "absolute",
     fontSize: 14,

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Camera } from "expo-camera";
+import { LinearGradient } from "expo-linear-gradient";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Screen from "../components/Screen";
 import AppButton from "../components/AppButton";
 import colors from "../config/colors";
 
-function HomeScreen(props) {
+function ScanScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
 
   useEffect(() => {
@@ -25,17 +27,25 @@ function HomeScreen(props) {
   }
   return (
     <Screen>
-      {/* <View style={styles.header}>
+      <LinearGradient
+        colors={[colors.Bluegradient1st, colors.Bluegradient2nd]}
+        style={styles.header}
+      >
+        <TouchableOpacity
+          style={styles.settingsButton}
+          onPress={() => navigation.goBack()}
+        >
+          <MaterialCommunityIcons
+            name={"arrow-left-circle"}
+            size={32}
+            color={"white"}
+          />
+        </TouchableOpacity>
         <Image
-          style={styles.wave}
-          source={require("../assets/wave-main.png")}
-        />
-        <Image
-          style={styles.logo}
           source={require("../assets/logo-white.png")}
+          style={styles.logo}
         />
-        <Text style={styles.welcome}>Scan</Text>
-      </View> */}
+      </LinearGradient>
 
       <View style={styles.body}>
         <Text>Centrer la camera sur le code</Text>
@@ -64,11 +74,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingLeft: 40,
     paddingRight: 40,
+    flex: 1,
   },
 
   header: {
+    height: "20%",
     justifyContent: "center",
     alignItems: "center",
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
   },
   logo: {
     width: 150,
@@ -76,17 +90,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 40,
   },
-
-  wave: {
-    height: 250,
-    width: 700,
-    //  position: "absolute",
-  },
-  welcome: {
+  settingsButton: {
     position: "absolute",
-    fontSize: 14,
-    color: colors.white,
+    left: 20,
+    top: 10,
   },
 });
 
-export default HomeScreen;
+export default ScanScreen;

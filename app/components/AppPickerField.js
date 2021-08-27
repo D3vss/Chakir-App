@@ -1,21 +1,21 @@
 import React from "react";
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text, TouchableOpacity } from "react-native";
 import colors from "../config/colors";
 
 function AppPickerField({ value, onPress }) {
   return (
-    <Pressable style={styles.container} onPress={onPress}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Text style={styles.value}>{value}</Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 30,
+    height: 60,
     backgroundColor: colors.lightgrey,
-    marginTop: 5,
+    marginTop: 10,
     padding: 10,
     justifyContent: "center",
     alignItems: "center",
