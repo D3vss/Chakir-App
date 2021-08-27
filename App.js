@@ -28,11 +28,19 @@ import { NavigationContainer } from "@react-navigation/native";
 import HomeNavigator from "./app/navigation/HomeNavigator";
 import SearchEndScreen from "./app/screens/SearchEndScreen";
 import RechercheNavigator from "./app/navigation/RechercheNavigator";
+import LoadingScreen from "./app/screens/LoadingScreen";
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3500);
+  }, []);
+
   return (
     <NavigationContainer>
-      <AuthNavigator />
+      {isLoading ? <LoadingScreen /> : <AuthNavigator />}
     </NavigationContainer>
   );
 }
