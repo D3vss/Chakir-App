@@ -39,9 +39,7 @@ const data = [
 ];
 
 //Render Function
-function HomeScreen({ navigation }) {
-  const [userName, setUserName] = useState("Username");
-
+function HomeScreen({ navigation, route }) {
   // Functions to handle the settings menu animations
 
   //Define the changing value
@@ -86,7 +84,7 @@ function HomeScreen({ navigation }) {
           source={require("../assets/logo-white.png")}
           style={styles.logo}
         />
-        <Text style={styles.welcome}>Bienvenue, {userName}</Text>
+        <Text style={styles.welcome}>Bienvenue, {route.params.username}</Text>
       </LinearGradient>
 
       {/* Animated menu settings */}

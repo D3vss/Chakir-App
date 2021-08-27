@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(6).label("Password"),
 });
 
-function LoginScreen(props) {
+function LoginScreen({ navigation }) {
   return (
     <Screen>
       <LinearGradient
@@ -36,7 +36,10 @@ function LoginScreen(props) {
 
         <Formik
           initialValues={{ username: "", password: "" }}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={(values) => {
+            console.log(values);
+            navigation.navigate("Home", { username: values.username });
+          }}
           validationSchema={validationSchema}
         >
           {({ handleSubmit, handleChange, errors }) => (
@@ -61,6 +64,7 @@ function LoginScreen(props) {
                   />
                   <ErrorMessage error={errors.password} />
                   <AppButton title={"Login"} onPress={handleSubmit} />
+
                   <Text style={styles.text}>Forgot Password?</Text>
                 </View>
               </LinearGradient>
