@@ -1,22 +1,18 @@
 import React from "react";
 
 import { createStackNavigator } from "@react-navigation/stack";
-
-import RechercheManuelleScreen from "../screens/RechercheManuelleScreen";
+import ScanScreen from "../screens/ScanScreen";
 import SearchEndScreen from "../screens/SearchEndScreen";
 
 const Stack = createStackNavigator();
 
-const RechercheNavigator = () => {
+const ScanNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen
-        name="RechercheManScreen"
-        component={RechercheManuelleScreen}
-      />
+      <Stack.Screen name="RM" component={ScanScreen} />
       <Stack.Screen name="SearchEnd" component={SearchEndScreen} />
     </Stack.Navigator>
   );
 };
 
-export default RechercheNavigator;
+export default ScanNavigator;

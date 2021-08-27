@@ -32,8 +32,7 @@ import RechercheNavigator from "./app/navigation/RechercheNavigator";
 export default function App() {
   return (
     <NavigationContainer>
-      <HomeNavigator />
-      <RechercheNavigator />
+      <AuthNavigator />
     </NavigationContainer>
   );
 }

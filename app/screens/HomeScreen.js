@@ -124,12 +124,12 @@ function HomeScreen({ navigation, route }) {
         <Appwidget
           title={"Recherche Manuelle"}
           icon={"folder-search"}
-          onPress={() => navigation.navigate("RM")}
+          onPress={() => navigation.navigate("RechercheNav")}
         />
         <Appwidget
           title={"Faire un scan"}
           icon={"barcode-scan"}
-          onPress={() => navigation.navigate("Scan")}
+          onPress={() => navigation.navigate("ScanNav")}
           style={styles.AppPickerField}
         />
       </View>

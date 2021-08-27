@@ -2,18 +2,17 @@ import React from "react";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/HomeScreen";
-import LoginScreen from "../screens/LoginScreen";
-import RechercheManuelleScreen from "../screens/RechercheManuelleScreen";
-import ScanScreen from "../screens/ScanScreen";
+import RechercheNavigator from "./RechercheNavigator";
+import ScanNavigator from "./ScanNavigator";
 
 const Stack = createStackNavigator();
 
 const HomeNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Login" component={HomeScreen} />
-      <Stack.Screen name="RM" component={RechercheManuelleScreen} />
-      <Stack.Screen name="Scan" component={ScanScreen} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="RechercheNav" component={RechercheNavigator} />
+      <Stack.Screen name="ScanNav" component={ScanNavigator} />
     </Stack.Navigator>
   );
 };
