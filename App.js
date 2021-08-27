@@ -29,6 +29,7 @@ import HomeNavigator from "./app/navigation/HomeNavigator";
 import SearchEndScreen from "./app/screens/SearchEndScreen";
 import RechercheNavigator from "./app/navigation/RechercheNavigator";
 import LoadingScreen from "./app/screens/LoadingScreen";
+import ScanScreen from "./app/screens/ScanScreen";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,9 +39,11 @@ export default function App() {
     }, 3500);
   }, []);
 
-  return (
+  return isLoading ? (
+    <LoadingScreen />
+  ) : (
     <NavigationContainer>
-      {isLoading ? <LoadingScreen /> : <AuthNavigator />}
+      <AuthNavigator />
     </NavigationContainer>
   );
 }

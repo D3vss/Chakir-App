@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
 
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Button,
+} from "react-native";
 import { Camera } from "expo-camera";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { BarCodeScanner } from "expo-barcode-scanner";
 
 import Screen from "../components/Screen";
 import AppButton from "../components/AppButton";
@@ -11,16 +19,22 @@ import colors from "../config/colors";
 
 function ScanScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
+  const [scanned, setScanned] = useState(false);
 
   useEffect(() => {
     (async () => {
-      const { status } = await Camera.requestPermissionsAsync();
+      const { status } = await BarCodeScanner.requestPermissionsAsync();
       setHasPermission(status === "granted");
     })();
   }, []);
 
+  const handleBarCodeScanned = ({ type, data }) => {
+    setScanned(true);
+    alert(`${data}`);
+  };
+
   if (hasPermission === null) {
-    return <View />;
+    return <Text>Requesting for camera permission</Text>;
   }
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
@@ -48,10 +62,18 @@ function ScanScreen({ navigation }) {
       </LinearGradient>
 
       <View style={styles.body}>
-        <Text>Centrer la camera sur le code</Text>
+        <Text style={styles.instructions}>
+          Placer le code bar dans le centre du camera:
+        </Text>
         <View style={styles.container}>
-          <Camera style={styles.camera} type={"back"}></Camera>
+          <BarCodeScanner
+            onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+            style={styles.camera}
+          />
         </View>
+        {scanned && (
+          <AppButton title={"Rescanner"} onPress={() => setScanned(false)} />
+        )}
       </View>
     </Screen>
   );
@@ -59,24 +81,36 @@ function ScanScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   camera: {
-    height: 300,
-    width: 300,
+    height: 1999,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   container: {
+    margin: 10,
+    height: 200,
+    width: "100%",
+    backgroundColor: "red",
+    alignItems: "center",
+    justifyContent: "center",
     borderRadius: 15,
-    height: 100,
-    width: 300,
     overflow: "hidden",
   },
-  body: {
-    justifyContent: "center",
-    alignItems: "center",
-    paddingLeft: 40,
-    paddingRight: 40,
-    flex: 1,
+  codeArea: {
+    height: 240,
+    width: 480,
   },
-
+  body: {
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1,
+    padding: 10,
+  },
+  instructions: {
+    fontWeight: "bold",
+    fontSize: 14,
+  },
   header: {
     height: "20%",
     justifyContent: "center",

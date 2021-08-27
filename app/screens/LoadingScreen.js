@@ -15,7 +15,7 @@ function LoadingScreen(props) {
           source={require("../assets/logo-white.png")}
           style={styles.logo}
         />
-        <Image source={require("../assets/loader3.gif")} style={styles.logo} />
+        <Image source={require("../assets/loader4.gif")} style={styles.logo} />
       </LinearGradient>
     </Screen>
   );
