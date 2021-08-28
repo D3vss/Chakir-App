@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 
 import {
   Animated,
@@ -23,6 +23,10 @@ import Screen from "../components/Screen";
 //Configs
 import colors from "../config/colors";
 
+import { CredentialsContext } from "../components/CredentialsContext";
+import { ClearLogin } from "../api/auth";
+import { Button } from "react-native";
+
 const data = [
   {
     id: 1,
@@ -41,7 +45,13 @@ const data = [
 //Render Function
 function HomeScreen({ navigation, route }) {
   //* Getting The User Info from The Login Screen
-  const { last_name, first_name } = route.params;
+  const { storedCredentials, setStoredCredentials } =
+    useContext(CredentialsContext);
+  if (storedCredentials == null) {
+    var { last_name, first_name } = route.params;
+  } else {
+    var { last_name, first_name } = storedCredentials;
+  }
 
   // Functions to handle the settings menu animations
 
@@ -88,6 +98,13 @@ function HomeScreen({ navigation, route }) {
           style={styles.logo}
         />
         <Text style={styles.welcome}>Bienvenue, {first_name}</Text>
+        <Button
+          title="Logout"
+          onPress={() => {
+            console.log("logout");
+            ClearLogin(setStoredCredentials, navigation);
+          }}
+        />
       </LinearGradient>
 
       {/* Animated menu settings */}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Image, StyleSheet, Text, View } from "react-native";
 
@@ -16,6 +16,7 @@ import colors from "../config/colors";
 import AppButton from "../components/AppButton";
 
 import { loginHandler } from "../api/auth";
+import { CredentialsContext } from "../components/CredentialsContext";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required().label("Username"),
@@ -23,6 +24,8 @@ const validationSchema = Yup.object().shape({
 });
 
 function LoginScreen({ navigation }) {
+  const { storedCredentials, setStoredCredentials } =
+    useContext(CredentialsContext);
   return (
     <Screen>
       <LinearGradient
@@ -42,7 +45,8 @@ function LoginScreen({ navigation }) {
             loginHandler(
               { email: values.username, password: values.password },
               navigation,
-              setSubmitting
+              setSubmitting,
+              setStoredCredentials
             );
           }}
           validationSchema={validationSchema}

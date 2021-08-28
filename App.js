@@ -32,19 +32,47 @@ import LoadingScreen from "./app/screens/LoadingScreen";
 import ScanScreen from "./app/screens/ScanScreen";
 import NavigationHandler from "./app/navigation/NavigationHandler";
 
+//* Import to keep the User Logged In
+import AppLoading from "expo-app-loading";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { CredentialsContext } from "./app/components/CredentialsContext";
+
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [storedCredentials, setStoredCredentials] = useState("");
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 3500);
   }, []);
 
+  const checkLoginCredentials = async () => {
+    try {
+      const response = await AsyncStorage.getItem("ChakirUser");
+      if (response !== null) {
+        console.log(response);
+        setStoredCredentials(JSON.parse(response));
+      } else {
+        setStoredCredentials(null);
+      }
+    } catch (err) {}
+  };
   return isLoading ? (
-    <LoadingScreen />
+    <>
+      <AppLoading
+        startAsync={checkLoginCredentials}
+        onFinish={() => {}}
+        onError={console.warn}
+      />
+      <LoadingScreen />
+    </>
   ) : (
-    <NavigationContainer>
-      <NavigationHandler />
-    </NavigationContainer>
+    <CredentialsContext.Provider
+      value={{ storedCredentials, setStoredCredentials }}
+    >
+      <NavigationContainer>
+        <NavigationHandler />
+      </NavigationContainer>
+    </CredentialsContext.Provider>
   );
 }
