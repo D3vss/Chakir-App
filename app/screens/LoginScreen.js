@@ -18,6 +18,8 @@ import AppButton from "../components/AppButton";
 import { loginHandler } from "../api/auth";
 import { CredentialsContext } from "../components/CredentialsContext";
 
+import { KeyboardAvoidingWrapper } from "../components/keyboardAvoidingWrapper";
+
 const validationSchema = Yup.object().shape({
   username: Yup.string().required().label("Username"),
   password: Yup.string().required().min(6).label("Password"),
@@ -38,7 +40,6 @@ function LoginScreen({ navigation }) {
             style={styles.logo}
           />
         </View>
-
         <Formik
           initialValues={{ username: "", password: "" }}
           onSubmit={(values, { setSubmitting }) => {
@@ -52,40 +53,42 @@ function LoginScreen({ navigation }) {
           validationSchema={validationSchema}
         >
           {({ handleSubmit, handleChange, errors, isSubmitting }) => (
-            <>
-              <LinearGradient
-                colors={[colors.sky2, colors.lightgrey]}
-                style={styles.body}
-              >
-                <Text style={styles.loginTitle}>Login</Text>
-                <View style={styles.form}>
-                  <AppTextInput
-                    icon={"account"}
-                    placeholder={"Username"}
-                    onChangeText={handleChange("username")}
-                    autoCorrect={false}
-                  />
-                  <ErrorMessage error={errors.username} />
-                  <PasswordField
-                    placeholder={"Password"}
-                    onChangeText={handleChange("password")}
-                    autoCorrect={false}
-                  />
-                  <ErrorMessage error={errors.password} />
-                  {!isSubmitting && (
-                    <AppButton title={"Login"} onPress={handleSubmit} />
-                  )}
-                  {isSubmitting && (
-                    <AppButton
-                      title={"Loading"}
-                      isSubmitting
-                      onPress={handleSubmit}
+            <KeyboardAvoidingWrapper>
+              <>
+                <LinearGradient
+                  colors={[colors.sky2, colors.lightgrey]}
+                  style={styles.body}
+                >
+                  <Text style={styles.loginTitle}>Login</Text>
+                  <View style={styles.form}>
+                    <AppTextInput
+                      icon={"account"}
+                      placeholder={"Username"}
+                      onChangeText={handleChange("username")}
+                      autoCorrect={false}
                     />
-                  )}
-                  <Text style={styles.text}>Forgot Password?</Text>
-                </View>
-              </LinearGradient>
-            </>
+                    <ErrorMessage error={errors.username} />
+                    <PasswordField
+                      placeholder={"Password"}
+                      onChangeText={handleChange("password")}
+                      autoCorrect={false}
+                    />
+                    <ErrorMessage error={errors.password} />
+                    {!isSubmitting && (
+                      <AppButton title={"Login"} onPress={handleSubmit} />
+                    )}
+                    {isSubmitting && (
+                      <AppButton
+                        title={"Loading"}
+                        isSubmitting
+                        onPress={handleSubmit}
+                      />
+                    )}
+                    <Text style={styles.text}>Forgot Password?</Text>
+                  </View>
+                </LinearGradient>
+              </>
+            </KeyboardAvoidingWrapper>
           )}
         </Formik>
       </LinearGradient>
