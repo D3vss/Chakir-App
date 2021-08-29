@@ -30,8 +30,10 @@ function ScanScreen({ navigation }) {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    navigation.naviate("SearchEnd");
-    // alert(`${data}`);
+    //TODO: Delete when debugging is finished
+    console.log(`${type} and ${data}`);
+    //TODO: uncomment when data scan is ready
+    //navigation.navigate("SearchEnd");
   };
 
   if (hasPermission === null) {
