@@ -29,70 +29,72 @@ function LoginScreen({ navigation }) {
   const { storedCredentials, setStoredCredentials } =
     useContext(CredentialsContext);
   return (
-    <Screen>
-      <LinearGradient
-        colors={[colors.Bluegradient2nd, colors.Bluegradient1st]}
-        style={styles.screen}
-      >
-        <View style={styles.header}>
-          <Image
-            source={require("../assets/logo-white.png")}
-            style={styles.logo}
-          />
-        </View>
-        <Formik
-          initialValues={{ username: "", password: "" }}
-          onSubmit={(values, { setSubmitting }) => {
-            loginHandler(
-              { email: values.username, password: values.password },
-              navigation,
-              setSubmitting,
-              setStoredCredentials
-            );
-          }}
-          validationSchema={validationSchema}
-        >
-          {({ handleSubmit, handleChange, errors, isSubmitting }) => (
-            <KeyboardAvoidingWrapper>
-              <>
-                <LinearGradient
-                  colors={[colors.sky2, colors.lightgrey]}
-                  style={styles.body}
-                >
-                  <Text style={styles.loginTitle}>Login</Text>
-                  <View style={styles.form}>
-                    <AppTextInput
-                      icon={"account"}
-                      placeholder={"Username"}
-                      onChangeText={handleChange("username")}
-                      autoCorrect={false}
-                    />
-                    <ErrorMessage error={errors.username} />
-                    <PasswordField
-                      placeholder={"Password"}
-                      onChangeText={handleChange("password")}
-                      autoCorrect={false}
-                    />
-                    <ErrorMessage error={errors.password} />
-                    {!isSubmitting && (
-                      <AppButton title={"Login"} onPress={handleSubmit} />
-                    )}
-                    {isSubmitting && (
-                      <AppButton
-                        title={"Loading"}
-                        isSubmitting
-                        onPress={handleSubmit}
+    <KeyboardAvoidingWrapper>
+      <>
+        <Screen>
+          <LinearGradient
+            colors={[colors.Bluegradient2nd, colors.Bluegradient1st]}
+            style={styles.screen}
+          >
+            <View style={styles.header}>
+              <Image
+                source={require("../assets/logo-white.png")}
+                style={styles.logo}
+              />
+            </View>
+            <Formik
+              initialValues={{ username: "", password: "" }}
+              onSubmit={(values, { setSubmitting }) => {
+                loginHandler(
+                  { email: values.username, password: values.password },
+                  navigation,
+                  setSubmitting,
+                  setStoredCredentials
+                );
+              }}
+              validationSchema={validationSchema}
+            >
+              {({ handleSubmit, handleChange, errors, isSubmitting }) => (
+                <>
+                  <LinearGradient
+                    colors={[colors.sky2, colors.lightgrey]}
+                    style={styles.body}
+                  >
+                    <Text style={styles.loginTitle}>Login</Text>
+                    <View style={styles.form}>
+                      <AppTextInput
+                        icon={"account"}
+                        placeholder={"Username"}
+                        onChangeText={handleChange("username")}
+                        autoCorrect={false}
                       />
-                    )}
-                    <Text style={styles.text}>Forgot Password?</Text>
-                  </View>
-                </LinearGradient>
-              </>
-            </KeyboardAvoidingWrapper>
-          )}
-        </Formik>
-      </LinearGradient>
-    </Screen>
+                      <ErrorMessage error={errors.username} />
+                      <PasswordField
+                        placeholder={"Password"}
+                        onChangeText={handleChange("password")}
+                        autoCorrect={false}
+                      />
+                      <ErrorMessage error={errors.password} />
+                      {!isSubmitting && (
+                        <AppButton title={"Login"} onPress={handleSubmit} />
+                      )}
+                      {isSubmitting && (
+                        <AppButton
+                          title={"Loading"}
+                          isSubmitting
+                          onPress={handleSubmit}
+                        />
+                      )}
+                      <Text style={styles.text}>Forgot Password?</Text>
+                    </View>
+                  </LinearGradient>
+                </>
+              )}
+            </Formik>
+          </LinearGradient>
+        </Screen>
+      </>
+    </KeyboardAvoidingWrapper>
   );
 }
 

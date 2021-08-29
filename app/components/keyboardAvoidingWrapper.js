@@ -4,6 +4,7 @@ import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
+  ScrollView,
 } from "react-native";
 
 export const KeyboardAvoidingWrapper = ({ children }) => (
