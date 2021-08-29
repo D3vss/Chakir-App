@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { Image, StyleSheet, Text, View } from "react-native";
 
@@ -28,12 +28,18 @@ const validationSchema = Yup.object().shape({
 function LoginScreen({ navigation }) {
   const { storedCredentials, setStoredCredentials } =
     useContext(CredentialsContext);
+  const [isLogin, setIsLogin] = useState(false);
   return (
     <KeyboardAvoidingWrapper>
       <>
         <Screen>
           <LinearGradient
-            colors={[colors.Bluegradient1st,colors.Bluegradient2nd, colors.Bluegradient2nd,colors.Bluegradient2nd]}
+            colors={[
+              colors.Bluegradient1st,
+              colors.Bluegradient2nd,
+              colors.Bluegradient2nd,
+              colors.Bluegradient2nd,
+            ]}
             style={styles.screen}
           >
             <View style={styles.header}>
@@ -49,7 +55,8 @@ function LoginScreen({ navigation }) {
                   { email: values.username, password: values.password },
                   navigation,
                   setSubmitting,
-                  setStoredCredentials
+                  setStoredCredentials,
+                  setIsLogin
                 );
               }}
               validationSchema={validationSchema}
@@ -85,9 +92,9 @@ function LoginScreen({ navigation }) {
                           onPress={handleSubmit}
                         />
                       )}
-                      {//TODO:define a boolean variable here and keep this => &&
-                      <ErrorMessage error= {"Incorrect email or password "} />
-                      }
+                      {!isLogin && (
+                        <ErrorMessage error={"Incorrect email or password "} />
+                      )}
                       <Text style={styles.text}>Forgot Password?</Text>
                     </View>
                   </LinearGradient>

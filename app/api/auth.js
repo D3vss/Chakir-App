@@ -6,7 +6,8 @@ export const loginHandler = async (
   values,
   navigation,
   setSubmitting,
-  setStoredCredentials
+  setStoredCredentials,
+  setIsLogin
 ) => {
   try {
     const response = await apiClient.post("/login", values);
@@ -15,12 +16,16 @@ export const loginHandler = async (
       navigation.navigate("HomeScreen", data.data);
       persistLogin(data.data, setStoredCredentials);
       setSubmitting(false);
+      setIsLogin(true);
     } else {
       //TODO Fix The UI to show errors
       console.log("error");
+      setIsLogin(false);
       setSubmitting(false);
     }
-  } catch (err) {}
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const persistLogin = async (credentials, setStoredCredentials) => {
