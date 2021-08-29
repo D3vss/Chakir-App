@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
   },
   welcome: {
     position: "absolute",
-    fontSize: 14,
+    fontSize: 16,
     color: colors.white,
     bottom: 20,
   },
