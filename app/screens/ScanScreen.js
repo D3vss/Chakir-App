@@ -32,7 +32,7 @@ function ScanScreen({ navigation }) {
     setScanned(true);
     //TODO: Delete when debugging is finished
     console.log(`${type} and ${data}`);
-    //TODO: uncomment when data scan is ready
+    //TODO: uncomment when scanned data is inserted into route params is ready
     //navigation.navigate("SearchEnd");
   };
 
