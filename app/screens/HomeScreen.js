@@ -30,21 +30,21 @@ const data = [
   {
     id: 1,
     label: "Settings",
-    onPress: null,
+    onPress: () => {},
   },
   {
     id: 2,
     label: "About Us",
-    onPress: null,
+    onPress: () => {},
   },
   {
     id: 3,
     label: "Log Out",
-    onPress: function() {
+    onPress: () => {
       console.log("logout");
-      //Uncomment this when the server is ready
+      //TODO Uncomment this when the server is ready
       //ClearLogin(setStoredCredentials, navigation);
-    }
+    },
   },
 ];
 
@@ -104,7 +104,6 @@ function HomeScreen({ navigation, route }) {
           style={styles.logo}
         />
         <Text style={styles.welcome}>Bienvenue, {first_name}</Text>
-        
       </LinearGradient>
 
       {/* Animated menu settings */}
@@ -130,7 +129,7 @@ function HomeScreen({ navigation, route }) {
           data={data}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
-            <AppPickerField value={item.label} onPress={() => {item.onPress()}} />
+            <AppPickerField value={item.label} onPress={item.onPress} />
           )}
         />
       </Animated.View>
@@ -139,7 +138,6 @@ function HomeScreen({ navigation, route }) {
 
       {/* Body */}
       <View style={styles.body}>
-
         <Appwidget
           title={"Recherche Manuelle"}
           icon={"folder-search"}
@@ -179,13 +177,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 40,
   },
-  question:{
+  question: {
     alignSelf: "flex-start",
     fontWeight: "bold",
     fontSize: 18,
     top: -50,
-    color: colors.medium
-    
+    color: colors.medium,
   },
   welcome: {
     position: "absolute",
