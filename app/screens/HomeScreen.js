@@ -58,6 +58,7 @@ function HomeScreen({ navigation, route }) {
         console.log("logout");
         //TODO Uncomment this when the server is ready
         ClearLogin(setStoredCredentials, navigation);
+        transAnim.setValue(0);
       },
     },
   ];
