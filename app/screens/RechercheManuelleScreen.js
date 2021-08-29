@@ -89,24 +89,23 @@ function RechercheManuelleScreen({ navigation }) {
 
       <View style={styles.body}>
         <Formik
-          initialValues={{ pv: "", vin: "" }}
+          initialValues={{ pv: "", vin: "", nev: "", ac: "", regionId: "" }}
           onSubmit={(values, { setSubmitting }) => {
-            // setSearchValues(values);
-            SearchHandler(values, setSubmitting, navigation); // navigation.navigate("SearchEnd");
+            SearchHandler(values, setSubmitting, navigation);
           }}
           validationSchema={validationSchema}
         >
           {({ handleChange, handleSubmit, errors, isSubmitting }) => (
             <>
               <View style={styles.form}>
-                {/*  <Text style={styles.label}>Matricule:</Text>
-               <View style={styles.matricule}>
+                <Text style={styles.label}>Matricule:</Text>
+                <View style={styles.matricule}>
                   <AppTextInput
                     style={styles.formField}
                     placeholder={"NEV"}
                     onChangeText={handleChange("nev")}
                   />
-                  {/* <AppFormPicker
+                  <AppFormPicker
                     name={"ac"}
                     data={AC}
                     style={styles.formField}
@@ -116,10 +115,10 @@ function RechercheManuelleScreen({ navigation }) {
                     style={styles.formField}
                     placeholder={"Region ID"}
                     onChangeText={handleChange("regionId")}
-                  /> 
+                  />
                 </View>
                 <ErrorMessage error={errors.nev} />
-                <ErrorMessage error={errors.regionId} /> */}
+                <ErrorMessage error={errors.regionId} />
                 <Text style={styles.label}>PV:</Text>
                 <AppTextInput
                   style={styles.formField}
