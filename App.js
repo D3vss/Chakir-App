@@ -76,5 +76,5 @@ export default function App() {
   //   </CredentialsContext.Provider>
   // );
 
-  return <LoginScreen/>
+  return <HomeScreen/>
 }

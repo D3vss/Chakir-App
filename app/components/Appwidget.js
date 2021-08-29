@@ -11,7 +11,7 @@ function Appwidget({ title, icon, onPress }) {
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <LinearGradient
         style={styles.button}
-        colors={[colors.ButtonBlueGradient1, colors.ButtonBlueGradient2]}
+        colors={[colors.Bluegradient2nd, colors.Bluegradient2nd]}
       >
         <MaterialCommunityIcons
           name={icon}
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     margin: 15,
     width: 200,
-    height: 70,
+    height: 100,
   },
 
   text: {

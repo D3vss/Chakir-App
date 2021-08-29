@@ -139,6 +139,7 @@ function HomeScreen({ navigation, route }) {
 
       {/* Body */}
       <View style={styles.body}>
+
         <Appwidget
           title={"Recherche Manuelle"}
           icon={"folder-search"}
@@ -160,8 +161,8 @@ const styles = StyleSheet.create({
   body: {
     justifyContent: "center",
     alignItems: "center",
-    paddingLeft: 40,
-    paddingRight: 40,
+    paddingLeft: 30,
+    paddingRight: 30,
     flex: 1,
   },
 
@@ -178,7 +179,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 40,
   },
-
+  question:{
+    alignSelf: "flex-start",
+    fontWeight: "bold",
+    fontSize: 18,
+    top: -50,
+    color: colors.medium
+    
+  },
   welcome: {
     position: "absolute",
     fontSize: 14,
