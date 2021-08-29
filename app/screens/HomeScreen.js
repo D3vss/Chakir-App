@@ -25,20 +25,26 @@ import colors from "../config/colors";
 
 import { CredentialsContext } from "../components/CredentialsContext";
 import { ClearLogin } from "../api/auth";
-import { Button } from "react-native";
 
 const data = [
   {
     id: 1,
     label: "Settings",
+    onPress: null,
   },
   {
     id: 2,
     label: "About Us",
+    onPress: null,
   },
   {
     id: 3,
     label: "Log Out",
+    onPress: function() {
+      console.log("logout");
+      //Uncomment this when the server is ready
+      //ClearLogin(setStoredCredentials, navigation);
+    }
   },
 ];
 
@@ -98,13 +104,7 @@ function HomeScreen({ navigation, route }) {
           style={styles.logo}
         />
         <Text style={styles.welcome}>Bienvenue, {first_name}</Text>
-        <Button
-          title="Logout"
-          onPress={() => {
-            console.log("logout");
-            ClearLogin(setStoredCredentials, navigation);
-          }}
-        />
+        
       </LinearGradient>
 
       {/* Animated menu settings */}
@@ -130,7 +130,7 @@ function HomeScreen({ navigation, route }) {
           data={data}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
-            <AppPickerField value={item.label} onPress={() => {}} />
+            <AppPickerField value={item.label} onPress={() => {item.onPress()}} />
           )}
         />
       </Animated.View>

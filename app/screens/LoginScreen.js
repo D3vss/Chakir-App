@@ -33,7 +33,7 @@ function LoginScreen({ navigation }) {
       <>
         <Screen>
           <LinearGradient
-            colors={[colors.Bluegradient2nd, colors.Bluegradient1st]}
+            colors={[colors.Bluegradient1st,colors.Bluegradient2nd, colors.Bluegradient2nd,colors.Bluegradient2nd]}
             style={styles.screen}
           >
             <View style={styles.header}>

@@ -120,6 +120,7 @@ function RechercheManuelleScreen({ navigation }) {
                 <ErrorMessage error={errors.regionId} />
                 <Text style={styles.label}>PV:</Text>
                 <AppTextInput
+                style={styles.formField}
                   placeholder={""}
                   onChangeText={handleChange("pv")}
                   autoCorrect={false}
@@ -127,6 +128,7 @@ function RechercheManuelleScreen({ navigation }) {
                 <ErrorMessage error={errors.pv} />
                 <Text style={styles.label}>VIN:</Text>
                 <AppTextInput
+                style={styles.formField}
                   placeholder={""}
                   onChangeText={handleChange("vin")}
                   autoCorrect={false}
