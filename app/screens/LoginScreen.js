@@ -28,7 +28,7 @@ const validationSchema = Yup.object().shape({
 function LoginScreen({ navigation }) {
   const { storedCredentials, setStoredCredentials } =
     useContext(CredentialsContext);
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   return (
     <KeyboardAvoidingWrapper>
       <>
