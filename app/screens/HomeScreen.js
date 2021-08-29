@@ -26,27 +26,7 @@ import colors from "../config/colors";
 import { CredentialsContext } from "../components/CredentialsContext";
 import { ClearLogin } from "../api/auth";
 
-const data = [
-  {
-    id: 1,
-    label: "Settings",
-    onPress: () => {},
-  },
-  {
-    id: 2,
-    label: "About Us",
-    onPress: () => {},
-  },
-  {
-    id: 3,
-    label: "Log Out",
-    onPress: () => {
-      console.log("logout");
-      //TODO Uncomment this when the server is ready
-      //ClearLogin(setStoredCredentials, navigation);
-    },
-  },
-];
+
 
 //Render Function
 function HomeScreen({ navigation, route }) {
@@ -58,6 +38,29 @@ function HomeScreen({ navigation, route }) {
   } else {
     var { last_name, first_name } = storedCredentials;
   }
+
+  //Settings Menu Array
+  const data = [
+    {
+      id: 1,
+      label: "Settings",
+      onPress: () => {},
+    },
+    {
+      id: 2,
+      label: "About Us",
+      onPress: () => {},
+    },
+    {
+      id: 3,
+      label: "Log Out",
+      onPress: () => {
+        console.log("logout");
+        //TODO Uncomment this when the server is ready
+        ClearLogin(setStoredCredentials, navigation);
+      },
+    },
+  ];
 
   // Functions to handle the settings menu animations
 

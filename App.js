@@ -38,43 +38,41 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CredentialsContext } from "./app/components/CredentialsContext";
 
 export default function App() {
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [storedCredentials, setStoredCredentials] = useState("");
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 3500);
-  // }, []);
+  const [isLoading, setIsLoading] = useState(true);
+  const [storedCredentials, setStoredCredentials] = useState("");
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3500);
+  }, []);
 
-  // const checkLoginCredentials = async () => {
-  //   try {
-  //     const response = await AsyncStorage.getItem("ChakirUser");
-  //     if (response !== null) {
-  //       console.log(response);
-  //       setStoredCredentials(JSON.parse(response));
-  //     } else {
-  //       setStoredCredentials(null);
-  //     }
-  //   } catch (err) {}
-  // };
-  // return isLoading ? (
-  //   <>
-  //     <AppLoading
-  //       startAsync={checkLoginCredentials}
-  //       onFinish={() => {}}
-  //       onError={console.warn}
-  //     />
-  //     <LoadingScreen />
-  //   </>
-  // ) : (
-  //   <CredentialsContext.Provider
-  //     value={{ storedCredentials, setStoredCredentials }}
-  //   >
-  //     <NavigationContainer>
-  //       <NavigationHandler />
-  //     </NavigationContainer>
-  //   </CredentialsContext.Provider>
-  // );
-
-  return <HomeScreen/>
+  const checkLoginCredentials = async () => {
+    try {
+      const response = await AsyncStorage.getItem("ChakirUser");
+      if (response !== null) {
+        console.log(response);
+        setStoredCredentials(JSON.parse(response));
+      } else {
+        setStoredCredentials(null);
+      }
+    } catch (err) {}
+  };
+  return isLoading ? (
+    <>
+      <AppLoading
+        startAsync={checkLoginCredentials}
+        onFinish={() => {}}
+        onError={console.warn}
+      />
+      <LoadingScreen />
+    </>
+  ) : (
+    <CredentialsContext.Provider
+      value={{ storedCredentials, setStoredCredentials }}
+    >
+      <NavigationContainer>
+        <NavigationHandler />
+      </NavigationContainer>
+    </CredentialsContext.Provider>
+  );
 }
