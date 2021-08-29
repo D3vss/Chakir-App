@@ -23,6 +23,7 @@ import colors from "../config/colors";
 import AppButton from "../components/AppButton";
 import { LinearGradient } from "expo-linear-gradient";
 
+import { KeyboardAvoidingWrapper } from "../components/keyboardAvoidingWrapper";
 import { SearchHandler } from "../api/carowners";
 
 const validationSchema = Yup.object()
@@ -66,91 +67,95 @@ function RechercheManuelleScreen({ navigation }) {
   const [carOwners, setCarOwners] = useState();
 
   return (
-    <Screen>
-      <LinearGradient
-        colors={[colors.Bluegradient1st, colors.Bluegradient2nd]}
-        style={styles.header}
-      >
-        <TouchableOpacity
-          style={styles.settingsButton}
-          onPress={() => navigation.goBack()}
-        >
-          <MaterialCommunityIcons
-            name={"arrow-left-circle"}
-            size={32}
-            color={"white"}
-          />
-        </TouchableOpacity>
-        <Image
-          source={require("../assets/logo-white.png")}
-          style={styles.logo}
-        />
-      </LinearGradient>
+    <KeyboardAvoidingWrapper>
+      <>
+        <Screen>
+          <LinearGradient
+            colors={[colors.Bluegradient1st, colors.Bluegradient2nd]}
+            style={styles.header}
+          >
+            <TouchableOpacity
+              style={styles.settingsButton}
+              onPress={() => navigation.goBack()}
+            >
+              <MaterialCommunityIcons
+                name={"arrow-left-circle"}
+                size={32}
+                color={"white"}
+              />
+            </TouchableOpacity>
+            <Image
+              source={require("../assets/logo-white.png")}
+              style={styles.logo}
+            />
+          </LinearGradient>
 
-      <View style={styles.body}>
-        <Formik
-          initialValues={{ pv: "", vin: "", nev: "", ac: "", regionId: "" }}
-          onSubmit={(values, { setSubmitting }) => {
-            SearchHandler(values, setSubmitting, navigation);
-          }}
-          validationSchema={validationSchema}
-        >
-          {({ handleChange, handleSubmit, errors, isSubmitting }) => (
-            <>
-              <View style={styles.form}>
-                <Text style={styles.label}>Matricule:</Text>
-                <View style={styles.matricule}>
-                  <AppTextInput
-                    style={styles.formField}
-                    placeholder={"NEV"}
-                    onChangeText={handleChange("nev")}
-                  />
-                  <AppFormPicker
-                    name={"ac"}
-                    data={AC}
-                    style={styles.formField}
-                    placeholder={"AC"}
-                  />
-                  <AppTextInput
-                    style={styles.formField}
-                    placeholder={"Region ID"}
-                    onChangeText={handleChange("regionId")}
-                  />
-                </View>
-                <ErrorMessage error={errors.nev} />
-                <ErrorMessage error={errors.regionId} />
-                <Text style={styles.label}>PV:</Text>
-                <AppTextInput
-                  style={styles.formField}
-                  placeholder={""}
-                  onChangeText={handleChange("pv")}
-                  autoCorrect={false}
-                />
-                <ErrorMessage error={errors.pv} />
-                <Text style={styles.label}>VIN:</Text>
-                <AppTextInput
-                  style={styles.formField}
-                  placeholder={""}
-                  onChangeText={handleChange("vin")}
-                  autoCorrect={false}
-                />
-                <ErrorMessage error={errors.vin} />
-              </View>
-              {!isSubmitting && (
-                <AppButton title={"Recherche"} onPress={handleSubmit} />
+          <View style={styles.body}>
+            <Formik
+              initialValues={{ pv: "", vin: "", nev: "", ac: "", regionId: "" }}
+              onSubmit={(values, { setSubmitting }) => {
+                SearchHandler(values, setSubmitting, navigation);
+              }}
+              validationSchema={validationSchema}
+            >
+              {({ handleChange, handleSubmit, errors, isSubmitting }) => (
+                <>
+                  <View style={styles.form}>
+                    <Text style={styles.label}>Matricule:</Text>
+                    <View style={styles.matricule}>
+                      <AppTextInput
+                        style={styles.formField}
+                        placeholder={"NEV"}
+                        onChangeText={handleChange("nev")}
+                      />
+                      <AppFormPicker
+                        name={"ac"}
+                        data={AC}
+                        style={styles.formField}
+                        placeholder={"AC"}
+                      />
+                      <AppTextInput
+                        style={styles.formField}
+                        placeholder={"Region ID"}
+                        onChangeText={handleChange("regionId")}
+                      />
+                    </View>
+                    <ErrorMessage error={errors.nev} />
+                    <ErrorMessage error={errors.regionId} />
+                    <Text style={styles.label}>PV:</Text>
+                    <AppTextInput
+                      style={styles.formField}
+                      placeholder={""}
+                      onChangeText={handleChange("pv")}
+                      autoCorrect={false}
+                    />
+                    <ErrorMessage error={errors.pv} />
+                    <Text style={styles.label}>VIN:</Text>
+                    <AppTextInput
+                      style={styles.formField}
+                      placeholder={""}
+                      onChangeText={handleChange("vin")}
+                      autoCorrect={false}
+                    />
+                    <ErrorMessage error={errors.vin} />
+                  </View>
+                  {!isSubmitting && (
+                    <AppButton title={"Recherche"} onPress={handleSubmit} />
+                  )}
+                  {isSubmitting && (
+                    <AppButton
+                      title={"Loading"}
+                      isSubmitting
+                      onPress={handleSubmit}
+                    />
+                  )}
+                </>
               )}
-              {isSubmitting && (
-                <AppButton
-                  title={"Loading"}
-                  isSubmitting
-                  onPress={handleSubmit}
-                />
-              )}
-            </>
-          )}
-        </Formik>
-      </View>
-    </Screen>
+            </Formik>
+          </View>
+        </Screen>
+      </>
+    </KeyboardAvoidingWrapper>
   );
 }
 

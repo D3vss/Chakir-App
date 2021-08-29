@@ -17,6 +17,8 @@ import Screen from "../components/Screen";
 import AppButton from "../components/AppButton";
 import colors from "../config/colors";
 
+import { ScanHandler } from "../api/carowners";
+
 function ScanScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
@@ -33,7 +35,7 @@ function ScanScreen({ navigation }) {
     //TODO: Delete when debugging is finished
     console.log(`${type} and ${data}`);
     //TODO: uncomment when scanned data is inserted into route params is ready
-    //navigation.navigate("SearchEnd");
+    ScanHandler({ pv: data }, navigation);
   };
 
   if (hasPermission === null) {

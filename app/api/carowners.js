@@ -24,3 +24,18 @@ export const SearchHandler = async (values, setSubmitting, navigation) => {
     console.log(err);
   }
 };
+
+export const ScanHandler = async (values, navigation) => {
+  try {
+    const { pv } = values;
+    const response = await apiClient.get(`/carOwners/pv/${pv}`);
+    const { data } = response;
+    if (data.success === true) {
+      navigation.navigate("SearchEnd", data);
+    } else {
+      alert("User Not Found");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
