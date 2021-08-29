@@ -6,22 +6,9 @@ import AppButton from "../components/AppButton";
 import { LinearGradient } from "expo-linear-gradient";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
-const data = [
-  {
-    id: 1,
-    label: "Prop 1",
-  },
-  {
-    id: 2,
-    label: "Prop 1",
-  },
-  {
-    id: 3,
-    label: "Prop 1",
-  },
-];
-function SearchEndScreen({ navigation }) {
-  const [carOwner, setCarOwner] = useState([]);
+
+function SearchEndScreen({ navigation, route }) {
+  const { data } = route.params;
   return (
     <Screen>
       <View style={styles.body}>
@@ -33,7 +20,10 @@ function SearchEndScreen({ navigation }) {
             data={data}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
-              <Text style={styles.field}>{item.label}</Text>
+              <>
+                <Text style={styles.field}>{item.name}</Text>
+                <Text style={styles.field}>{item.pv}</Text>
+              </>
             )}
           />
         </LinearGradient>

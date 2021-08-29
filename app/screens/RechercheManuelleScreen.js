@@ -23,6 +23,8 @@ import colors from "../config/colors";
 import AppButton from "../components/AppButton";
 import { LinearGradient } from "expo-linear-gradient";
 
+import { SearchHandler } from "../api/carowners";
+
 const validationSchema = Yup.object()
   .shape({
     nev: Yup.number().positive().max(99999).min(1).label("NEV"),
@@ -87,24 +89,24 @@ function RechercheManuelleScreen({ navigation }) {
 
       <View style={styles.body}>
         <Formik
-          initialValues={{ nev: "", ac: "", regionId: "", pv: "", vin: "" }}
-          onSubmit={(values) => {
-            setSearchValues(values);
-            navigation.navigate("SearchEnd");
+          initialValues={{ pv: "", vin: "" }}
+          onSubmit={(values, { setSubmitting }) => {
+            // setSearchValues(values);
+            SearchHandler(values, setSubmitting, navigation); // navigation.navigate("SearchEnd");
           }}
           validationSchema={validationSchema}
         >
-          {({ handleChange, handleSubmit, errors }) => (
+          {({ handleChange, handleSubmit, errors, isSubmitting }) => (
             <>
               <View style={styles.form}>
-                <Text style={styles.label}>Matricule:</Text>
-                <View style={styles.matricule}>
+                {/*  <Text style={styles.label}>Matricule:</Text>
+               <View style={styles.matricule}>
                   <AppTextInput
                     style={styles.formField}
                     placeholder={"NEV"}
                     onChangeText={handleChange("nev")}
                   />
-                  <AppFormPicker
+                  {/* <AppFormPicker
                     name={"ac"}
                     data={AC}
                     style={styles.formField}
@@ -114,13 +116,13 @@ function RechercheManuelleScreen({ navigation }) {
                     style={styles.formField}
                     placeholder={"Region ID"}
                     onChangeText={handleChange("regionId")}
-                  />
+                  /> 
                 </View>
                 <ErrorMessage error={errors.nev} />
-                <ErrorMessage error={errors.regionId} />
+                <ErrorMessage error={errors.regionId} /> */}
                 <Text style={styles.label}>PV:</Text>
                 <AppTextInput
-                style={styles.formField}
+                  style={styles.formField}
                   placeholder={""}
                   onChangeText={handleChange("pv")}
                   autoCorrect={false}
@@ -128,14 +130,23 @@ function RechercheManuelleScreen({ navigation }) {
                 <ErrorMessage error={errors.pv} />
                 <Text style={styles.label}>VIN:</Text>
                 <AppTextInput
-                style={styles.formField}
+                  style={styles.formField}
                   placeholder={""}
                   onChangeText={handleChange("vin")}
                   autoCorrect={false}
                 />
                 <ErrorMessage error={errors.vin} />
               </View>
-              <AppButton title={"Rechercher"} onPress={handleSubmit} />
+              {!isSubmitting && (
+                <AppButton title={"Recherche"} onPress={handleSubmit} />
+              )}
+              {isSubmitting && (
+                <AppButton
+                  title={"Loading"}
+                  isSubmitting
+                  onPress={handleSubmit}
+                />
+              )}
             </>
           )}
         </Formik>

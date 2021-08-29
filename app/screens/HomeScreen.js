@@ -26,8 +26,6 @@ import colors from "../config/colors";
 import { CredentialsContext } from "../components/CredentialsContext";
 import { ClearLogin } from "../api/auth";
 
-
-
 //Render Function
 function HomeScreen({ navigation, route }) {
   //* Getting The User Info from The Login Screen
@@ -56,7 +54,6 @@ function HomeScreen({ navigation, route }) {
       label: "Log Out",
       onPress: () => {
         console.log("logout");
-        //TODO Uncomment this when the server is ready
         ClearLogin(setStoredCredentials, navigation);
         transAnim.setValue(0);
       },
