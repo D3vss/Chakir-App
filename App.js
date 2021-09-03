@@ -59,7 +59,6 @@ export default function App() {
       }
     } catch (err) {}
   };
-  //TODO: uncomment when the testing bellow is finished (check next TODO:)
 
   return isLoading ? (
     <>
@@ -79,59 +78,4 @@ export default function App() {
       </NavigationContainer>
     </CredentialsContext.Provider>
   );
-
-  //TODO: delete the code below when testing is finished -- Testing the ScrollView feature
-
-  // return (
-  //   <ScrollView horizontal={true}>
-  //     <View></View>
-  //     <Screen>
-  //       <View style={styles.page1}>
-  //         <View style={styles.card1}>
-  //           <Text>Page 1</Text>
-  //         </View>
-  //       </View>
-  //     </Screen>
-  //     <Screen>
-  //       <View style={styles.page1}>
-  //         <View style={styles.card1}>
-  //           <Text>Page 2</Text>
-  //         </View>
-  //       </View>
-  //     </Screen>
-  //     <Screen>
-  //       <View style={styles.page1}>
-  //         <View style={styles.card1}>
-  //           <Text>Page 3</Text>
-  //         </View>
-  //       </View>
-  //     </Screen>
-  //   </ScrollView>
-  // );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     width: "100%",
-//   },
-//   page1: {
-//     flex: 1,
-//     width: Dimensions.get("window").width,
-//     padding: 20,
-//   },
-//   card1: {
-//     backgroundColor: "grey",
-//     flex: 1,
-//     borderRadius: 15,
-//     padding: 15,
-//   },
-//   page2: {
-//     backgroundColor: "blue",
-//     flex: 1,
-//   },
-//   page3: {
-//     backgroundColor: "green",
-//     flex: 1,
-//   },
-// });

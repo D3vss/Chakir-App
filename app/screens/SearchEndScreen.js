@@ -7,29 +7,20 @@ import { LinearGradient } from "expo-linear-gradient";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
 
+import { AppScrollView } from "../components/AppScrollView";
+
 function SearchEndScreen({ navigation, route }) {
   const { data } = route.params;
+
   return (
-    <Screen>
-      <View style={styles.body}>
-        <LinearGradient
-          colors={[colors.lightgrey, colors.lightgrey]}
-          style={styles.infoCard}
-        >
-          <FlatList
-            data={data}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
-              <>
-                <Text style={styles.field}>{item.name}</Text>
-                <Text style={styles.field}>{item.pv}</Text>
-              </>
-            )}
-          />
-        </LinearGradient>
-        <AppButton title={"Retour"} onPress={() => navigation.goBack()} />
-      </View>
-    </Screen>
+    // <Screen>
+    //   <View style={styles.body}>
+    //     <AppScrollView data={DATA} />
+
+    //     <AppButton title={"Retour"} onPress={() => navigation.goBack()} />
+    //   </View>
+    // </Screen>
+    <AppScrollView data={data} />
   );
 }
 
