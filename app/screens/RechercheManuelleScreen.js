@@ -189,6 +189,8 @@ function RechercheManuelleScreen({ navigation }) {
                     )}
                   </View>
                   {/*End of Form Container */}
+
+                  {/* Submit Button */}
                   {!choiceButtonsVisible && (
                     <>
                       {!isSubmitting && (
@@ -202,6 +204,7 @@ function RechercheManuelleScreen({ navigation }) {
                         />
                       )}
 
+                      {/* Button to choose the search mode */}
                       {!choiceButtonsVisible && (
                         <AppButton
                           title="Rechoisir le mode"
