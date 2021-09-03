@@ -10,6 +10,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import AppTextInput from "../components/AppTextInput";
 import ErrorMessage from "../components/ErrorMessage";
 import PasswordField from "../components/PasswordField";
+import UsernameField from "../components/UsernameField";
 import Screen from "../components/Screen";
 
 import colors from "../config/colors";
@@ -69,7 +70,7 @@ function LoginScreen({ navigation }) {
                   >
                     <Text style={styles.loginTitle}>Login</Text>
                     <View style={styles.form}>
-                      <AppTextInput
+                      <UsernameField
                         icon={"account"}
                         placeholder={"Username"}
                         onChangeText={handleChange("username")}
@@ -87,6 +88,7 @@ function LoginScreen({ navigation }) {
                       )}
                       {isSubmitting && (
                         <AppButton
+                          style={styles.loginButton}
                           title={"Loading"}
                           isSubmitting
                           onPress={handleSubmit}
@@ -122,6 +124,9 @@ const styles = StyleSheet.create({
 
   form: {
     alignItems: "center",
+    width: "100%",
+  },
+  field: {
     width: "100%",
   },
   header: {

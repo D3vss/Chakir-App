@@ -76,9 +76,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.lightgrey,
     width: "100%",
-    padding: 10,
+    padding: 15,
     flexDirection: "row",
-    borderRadius: 25,
+    borderRadius: 15,
     alignItems: "center",
   },
   closeButton: {
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   viewContainer: {
-    width: "100%",
+    width: 90,
   },
   modal: {
     padding: 15,

@@ -24,7 +24,7 @@ function AppButton({ title, onPress, isSubmitting = false }) {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.Bluegradient2nd,
-    borderRadius: 25,
+    borderRadius: 15,
     padding: 15,
     justifyContent: "center",
     alignItems: "center",

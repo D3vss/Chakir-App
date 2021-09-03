@@ -63,8 +63,10 @@ const AC = [
 ];
 
 function RechercheManuelleScreen({ navigation }) {
-  const [searchValues, setSearchValues] = useState();
-  const [carOwners, setCarOwners] = useState();
+  const [choiceButtonsVisible, setchoiceButtonsVisible] = useState(true);
+  const [matriculeVisible, setMatriculeVisible] = useState(false);
+  const [pvVisible, setPvVisible] = useState(false);
+  const [vinVisible, setVinVisible] = useState(false);
 
   return (
     <KeyboardAvoidingWrapper>
@@ -91,6 +93,35 @@ function RechercheManuelleScreen({ navigation }) {
           </LinearGradient>
 
           <View style={styles.body}>
+            {/* Choosing buttons Group */}
+            {choiceButtonsVisible && (
+              <>
+                <AppButton
+                  title={"Recherche par matricule"}
+                  onPress={() => {
+                    setMatriculeVisible(!matriculeVisible);
+                    setchoiceButtonsVisible(!choiceButtonsVisible);
+                  }}
+                />
+                <AppButton
+                  title={"Recherche par PV"}
+                  onPress={() => {
+                    setPvVisible(!pvVisible);
+                    setchoiceButtonsVisible(!choiceButtonsVisible);
+                  }}
+                />
+                <AppButton
+                  title={"Recherche par VIN"}
+                  onPress={() => {
+                    setVinVisible(!vinVisible);
+                    setchoiceButtonsVisible(!choiceButtonsVisible);
+                  }}
+                />
+              </>
+            )}
+            {/* End of choosing buttons group */}
+
+            {/*Formik tag  */}
             <Formik
               initialValues={{ pv: "", vin: "", nev: "", ac: "", regionId: "" }}
               onSubmit={(values, { setSubmitting }) => {
@@ -100,54 +131,89 @@ function RechercheManuelleScreen({ navigation }) {
             >
               {({ handleChange, handleSubmit, errors, isSubmitting }) => (
                 <>
+                  {/* Form Container */}
                   <View style={styles.form}>
-                    <Text style={styles.label}>Matricule:</Text>
-                    <View style={styles.matricule}>
-                      <AppTextInput
-                        style={styles.formField}
-                        placeholder={"NEV"}
-                        onChangeText={handleChange("nev")}
-                      />
-                      <AppFormPicker
-                        name={"ac"}
-                        data={AC}
-                        style={styles.formField}
-                        placeholder={"AC"}
-                      />
-                      <AppTextInput
-                        style={styles.formField}
-                        placeholder={"Region ID"}
-                        onChangeText={handleChange("regionId")}
-                      />
-                    </View>
-                    <ErrorMessage error={errors.nev} />
-                    <ErrorMessage error={errors.regionId} />
-                    <Text style={styles.label}>PV:</Text>
-                    <AppTextInput
-                      style={styles.formField}
-                      placeholder={""}
-                      onChangeText={handleChange("pv")}
-                      autoCorrect={false}
-                    />
-                    <ErrorMessage error={errors.pv} />
-                    <Text style={styles.label}>VIN:</Text>
-                    <AppTextInput
-                      style={styles.formField}
-                      placeholder={""}
-                      onChangeText={handleChange("vin")}
-                      autoCorrect={false}
-                    />
-                    <ErrorMessage error={errors.vin} />
+                    {/* Search with Matricule */}
+                    {matriculeVisible && (
+                      <>
+                        <Text style={styles.label}>Matricule:</Text>
+                        <View style={styles.matricule}>
+                          <AppTextInput
+                            style={styles.formField}
+                            placeholder={"NEV"}
+                            onChangeText={handleChange("nev")}
+                          />
+                          <AppFormPicker
+                            name={"ac"}
+                            data={AC}
+                            style={styles.formField}
+                            placeholder={"AC"}
+                          />
+                          <AppTextInput
+                            style={styles.formField}
+                            placeholder={"Region ID"}
+                            onChangeText={handleChange("regionId")}
+                          />
+                        </View>
+                        <ErrorMessage error={errors.nev} />
+                        <ErrorMessage error={errors.regionId} />
+                      </>
+                    )}
+
+                    {/* Search with PV */}
+                    {pvVisible && (
+                      <>
+                        <Text style={styles.label}>PV:</Text>
+                        <AppTextInput
+                          style={styles.formField2}
+                          placeholder={""}
+                          onChangeText={handleChange("pv")}
+                          autoCorrect={false}
+                        />
+                        <ErrorMessage error={errors.pv} />
+                      </>
+                    )}
+
+                    {/* Search with VIN */}
+                    {vinVisible && (
+                      <>
+                        <Text style={styles.label}>VIN:</Text>
+                        <AppTextInput
+                          style={styles.formField2}
+                          placeholder={""}
+                          onChangeText={handleChange("vin")}
+                          autoCorrect={false}
+                        />
+                        <ErrorMessage error={errors.vin} />
+                      </>
+                    )}
                   </View>
-                  {!isSubmitting && (
-                    <AppButton title={"Recherche"} onPress={handleSubmit} />
-                  )}
-                  {isSubmitting && (
-                    <AppButton
-                      title={"Loading"}
-                      isSubmitting
-                      onPress={handleSubmit}
-                    />
+                  {/*End of Form Container */}
+                  {!choiceButtonsVisible && (
+                    <>
+                      {!isSubmitting && (
+                        <AppButton title={"Recherche"} onPress={handleSubmit} />
+                      )}
+                      {isSubmitting && (
+                        <AppButton
+                          title={"Loading"}
+                          isSubmitting
+                          onPress={handleSubmit}
+                        />
+                      )}
+
+                      {!choiceButtonsVisible && (
+                        <AppButton
+                          title="Rechoisir le mode"
+                          onPress={() => {
+                            setMatriculeVisible(false);
+                            setPvVisible(false);
+                            setVinVisible(false);
+                            setchoiceButtonsVisible(!choiceButtonsVisible);
+                          }}
+                        />
+                      )}
+                    </>
                   )}
                 </>
               )}
@@ -196,14 +262,20 @@ const styles = StyleSheet.create({
   },
 
   matricule: {
+    flexDirection: "row",
     alignItems: "center",
-    width: "100%",
+    justifyContent: "space-between",
+    alignContent: "space-between",
+    //width: "100%",
+    //flex: 1,
   },
 
   formField: {
+    width: 90,
+  },
+  formField2: {
     width: "100%",
   },
-
   welcome: {
     position: "absolute",
     fontSize: 14,

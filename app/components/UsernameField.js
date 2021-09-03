@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../config/colors";
 
-function AppTextInput({ icon, ...otherProps }) {
+function UsernameField({ icon, ...otherProps }) {
   return (
     <View style={styles.container}>
       {icon && (
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightgrey,
     borderRadius: 15,
     flexDirection: "row",
-    //width: "100%",
+    width: "100%",
     padding: 15,
     alignItems: "center",
     marginBottom: 5,
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppTextInput;
+export default UsernameField;
