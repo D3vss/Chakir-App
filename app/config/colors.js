@@ -5,7 +5,8 @@ export default {
   white: "#fff",
   lightgrey: "#EDEDED",
   medium: "#444444",
-  lightgreen: "#F4F4F4",
+  lightgreen: "#50CB93",
+  lightred: "#ED8E7C",
 
   Bluegradient1st: "#5C258D",
   Bluegradient2nd: "#4389A2",

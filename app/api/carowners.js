@@ -13,11 +13,15 @@ export const SearchHandler = async (values, setSubmitting, navigation) => {
       );
     }
 
+    let isFound;
     const { data } = response;
     if (data.success === true) {
-      navigation.navigate("SearchEnd", data);
+      //navigation.navigate("SearchEnd", data);
+      isFound = true;
+      navigation.navigate("SearchEndSplashScreen", { data, isFound });
     } else {
-      alert("User Not Found");
+      isFound = false;
+      navigation.navigate("SearchEndSplashScreen", { data, isFound });
     }
     setSubmitting(false);
   } catch (err) {
@@ -29,11 +33,16 @@ export const ScanHandler = async (values, navigation) => {
   try {
     const { pv } = values;
     const response = await apiClient.get(`/carOwners/pv/${pv}`);
+
+    let isFound;
     const { data } = response;
     if (data.success === true) {
-      navigation.navigate("SearchEnd", data);
+      //navigation.navigate("SearchEnd", data);
+      isFound = true;
+      navigation.navigate("SearchEndSplashScreen", { data, isFound });
     } else {
-      alert("User Not Found");
+      isFound = false;
+      navigation.navigate("SearchEndSplashScreen", { data, isFound });
     }
   } catch (err) {
     console.log(err);

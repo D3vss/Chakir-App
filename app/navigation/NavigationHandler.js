@@ -4,6 +4,7 @@ import LoginScreen from "../screens/LoginScreen";
 import HomeScreen from "../screens/HomeScreen";
 import RechercheManuelleScreen from "../screens/RechercheManuelleScreen";
 import ScanScreen from "../screens/ScanScreen";
+import SearchEndSplashScreen from "../screens/SearchEndSplashScreen";
 import SearchEndScreen from "../screens/SearchEndScreen";
 
 import { CredentialsContext } from "../components/CredentialsContext";
@@ -26,6 +27,10 @@ function NavigationHandler(props) {
                 component={RechercheManuelleScreen}
               />
               <Stack.Screen name="ScanScreen" component={ScanScreen} />
+              <Stack.Screen
+                name="SearchEndSplashScreen"
+                component={SearchEndSplashScreen}
+              />
               <Stack.Screen name="SearchEnd" component={SearchEndScreen} />
             </>
           ) : (
@@ -37,6 +42,10 @@ function NavigationHandler(props) {
                 component={RechercheManuelleScreen}
               />
               <Stack.Screen name="ScanScreen" component={ScanScreen} />
+              <Stack.Screen
+                name="SearchEndSplashScreen"
+                component={SearchEndSplashScreen}
+              />
               <Stack.Screen name="SearchEnd" component={SearchEndScreen} />
             </>
           )}

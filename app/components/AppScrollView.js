@@ -1,5 +1,5 @@
 //* IMPORTS
-import React from "react";
+import React, { useState } from "react";
 import { Children } from "react";
 import {
   StyleSheet,
@@ -28,20 +28,26 @@ export const AppScrollView = ({ data, children }) => {
   const enabledLeft = useSharedValue(0);
   const enabledRight = useSharedValue(0);
   settingUpValues(data, 0, enabledLeft, enabledRight);
+
   const renderItem = ({ item, index }) => {
     settingUpValues(data, index, enabledLeft, enabledRight);
+
     return (
       <View style={styles.container}>
         <Animated.View style={styles.card}>
-          {
-            //*TODO add component and styles here }
-          }
-          <Text>{item.id}</Text>
-          <Text>{item.pv}</Text>
-          <Text>{item.vin}</Text>
-          {
-            //*TODO add component and styles here }
-          }
+          <Text>
+            <Text style={styles.bold}>Nom Complet: </Text> {item.name}
+          </Text>
+          <Text>
+            <Text style={styles.bold}>PV: </Text> {item.pv}
+          </Text>
+          <Text>
+            <Text style={styles.bold}>VIN: </Text> {item.vin}
+          </Text>
+          <Text style={{ writingDirection: "rtl" }}>
+            <Text style={styles.bold}>Matricule: </Text> {item.matricule.nev}|
+            {item.matricule.ac}|{item.matricule.regionId}
+          </Text>
         </Animated.View>
         <View style={styles.containerPag}>
           <IconPag name="arrow-left" enalbed={enabledLeft} />
@@ -70,11 +76,8 @@ export const AppScrollView = ({ data, children }) => {
 
 //* StyleSheet
 const styles = StyleSheet.create({
-  container: {
-    width: width,
-    height: height,
-    justifyContent: "center",
-    alignItems: "center",
+  bold: {
+    fontWeight: "bold",
   },
   card: {
     width: CARD_WIDTH,
@@ -83,6 +86,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     justifyContent: "center",
     alignItems: "center",
+    padding: 15,
+
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -92,11 +97,38 @@ const styles = StyleSheet.create({
     shadowRadius: 13.16,
     elevation: 20,
   },
+  carInfo: {
+    flex: 1,
+    padding: 15,
+    backgroundColor: colors.lightgrey,
+    borderRadius: 15,
+    marginBottom: 5,
+  },
+  container: {
+    width: width,
+    height: height,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   containerPag: {
     width: (width * 1) / 3,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
+  },
+  found: {
+    backgroundColor: colors.lightgreen,
+    height: "50%",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 15,
+  },
+  notFound: {
+    backgroundColor: colors.lightred,
+    height: "50%",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 15,
   },
   textPag: {
     backgroundColor: PAGINATION_COLOR,
@@ -107,6 +139,11 @@ const styles = StyleSheet.create({
     margin: 20,
     borderRadius: 50,
     opacity: 0.7,
+  },
+  verifytext: {
+    color: colors.white,
+    fontWeight: "bold",
+    fontSize: 16,
   },
 });
 
