@@ -4,13 +4,13 @@ import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
-  ScrollView,
 } from "react-native";
 
-export const KeyboardAvoidingWrapper = ({ children }) => (
+export const KeyboardAvoidingWrapper = ({ children, enabled }) => (
   <KeyboardAvoidingView
     behavior={Platform.OS === "ios" ? "padding" : "height"}
     style={{ flex: 1 }}
+    enabled={enabled}
   >
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       {children}

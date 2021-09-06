@@ -6,6 +6,7 @@ import LoginScreen from "./app/screens/LoginScreen";
 import RechercheManuelleScreen from "./app/screens/RechercheManuelleScreen";
 import AppPicker from "./app/components/AppPicker";
 import Screen from "./app/components/Screen";
+import AppTextInput from "./app/components/AppTextInput";
 
 import AuthNavigator from "./app/navigation/AuthNavigator";
 
@@ -38,6 +39,7 @@ import NavigationHandler from "./app/navigation/NavigationHandler";
 import AppLoading from "expo-app-loading";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CredentialsContext } from "./app/components/CredentialsContext";
+import { TextInput } from "react-native-gesture-handler";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -78,4 +80,9 @@ export default function App() {
       </NavigationContainer>
     </CredentialsContext.Provider>
   );
+  // return (
+  //   <Screen>
+  //     <AppTextInput></AppTextInput>
+  //   </Screen>
+  // );
 }
