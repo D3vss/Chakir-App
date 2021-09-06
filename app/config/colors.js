@@ -7,9 +7,9 @@ export default {
   medium: "#444444",
   lightgreen: "#50CB93",
   lightred: "#ED8E7C",
-
-  Bluegradient1st: "#5C258D",
-  Bluegradient2nd: "#4389A2",
+  lightblue: "#e6f6ff",
+  Bluegradient1st: "#002133",
+  Bluegradient2nd: "#0073b3",
   ButtonBlueGradient1: "#757F9A",
   ButtonBlueGradient2: "#085078",
 
@@ -18,4 +18,6 @@ export default {
 
   sky1: "#076585",
   sky2: "#fff",
+
+  blue: "#0073b3",
 };

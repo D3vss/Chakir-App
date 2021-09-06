@@ -136,7 +136,9 @@ function RechercheManuelleScreen({ navigation }) {
                   {/* Search with Matricule */}
                   {matriculeVisible && (
                     <>
-                      <Text style={styles.label}>Matricule:</Text>
+                      <Text style={styles.label}>
+                        Veuillez saisir le matricule:
+                      </Text>
                       <View style={styles.matricule}>
                         <AppTextInput
                           style={styles.formField}
@@ -163,10 +165,10 @@ function RechercheManuelleScreen({ navigation }) {
                   {/* Search with PV */}
                   {pvVisible && (
                     <>
-                      <Text style={styles.label}>PV:</Text>
+                      <Text style={styles.label}>Veuillez saisir le PV:</Text>
                       <AppTextInput
                         style={styles.formField2}
-                        placeholder={""}
+                        placeholder={"PV..."}
                         onChangeText={handleChange("pv")}
                         autoCorrect={false}
                       />
@@ -177,10 +179,10 @@ function RechercheManuelleScreen({ navigation }) {
                   {/* Search with VIN */}
                   {vinVisible && (
                     <>
-                      <Text style={styles.label}>VIN:</Text>
+                      <Text style={styles.label}>Veuillez saisir le VIN:</Text>
                       <AppTextInput
                         style={styles.formField2}
-                        placeholder={""}
+                        placeholder={"VIN..."}
                         onChangeText={handleChange("vin")}
                         autoCorrect={false}
                       />
@@ -235,11 +237,11 @@ function RechercheManuelleScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   body: {
+    top: 50,
+    height: "50%",
     alignItems: "center",
     justifyContent: "center",
-    paddingLeft: 10,
-    paddingRight: 10,
-    flex: 1,
+    padding: 15,
   },
   header: {
     height: "20%",
@@ -247,6 +249,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
+    elevation: 10,
   },
   logo: {
     width: 150,
@@ -267,6 +270,7 @@ const styles = StyleSheet.create({
 
   label: {
     alignSelf: "flex-start",
+    marginBottom: 8,
   },
 
   matricule: {
@@ -279,7 +283,7 @@ const styles = StyleSheet.create({
   },
 
   formField: {
-    width: 90,
+    width: 85,
   },
   formField2: {
     width: "100%",

@@ -84,75 +84,78 @@ function HomeScreen({ navigation, route }) {
   //End
 
   return (
-    <Screen>
-      {/* Header */}
-      <LinearGradient
-        colors={[colors.Bluegradient1st, colors.Bluegradient2nd]}
-        style={styles.header}
-      >
-        <TouchableOpacity
-          style={styles.settingsButton}
-          onPress={translateRight}
+    <>
+      <Screen>
+        {/* Header */}
+        <LinearGradient
+          colors={[colors.Bluegradient1st, colors.Bluegradient2nd]}
+          style={styles.header}
         >
-          <MaterialCommunityIcons
-            name={"dots-horizontal"}
-            size={24}
-            color={"white"}
-          />
-        </TouchableOpacity>
-        <Image
-          source={require("../assets/logo-white.png")}
-          style={styles.logo}
-        />
-        <Text style={styles.welcome}>Bienvenue, {first_name}</Text>
-      </LinearGradient>
-
-      {/* Animated menu settings */}
-      <Animated.View
-        style={[
-          styles.slider,
-          {
-            transform: [{ translateX: transAnim }],
-          },
-        ]}
-      >
-        <Pressable onPress={translateLeft} style={styles.closeMenuButton}>
-          <View style={styles.closeMenuView}>
+          <TouchableOpacity
+            style={styles.settingsButton}
+            onPress={translateRight}
+          >
             <MaterialCommunityIcons
-              name={"arrow-left-circle"}
-              size={32}
-              color={colors.medium}
+              name={"dots-horizontal"}
+              size={24}
+              color={"white"}
             />
-            <Text style={styles.closeMenuText}>Home</Text>
-          </View>
-        </Pressable>
-        <FlatList
-          data={data}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <AppPickerField value={item.label} onPress={item.onPress} />
-          )}
-        />
-      </Animated.View>
-      {/*End of Animated menu settings */}
-      {/*End Header*/}
+          </TouchableOpacity>
+          <Image
+            source={require("../assets/logo-white.png")}
+            style={styles.logo}
+          />
+          <Text style={styles.welcome}>
+            Bienvenue, <Text style={styles.boldtext}>{first_name}</Text>
+          </Text>
+        </LinearGradient>
 
-      {/* Body */}
-      <View style={styles.body}>
-        <Appwidget
-          title={"Recherche Manuelle"}
-          icon={"folder-search"}
-          onPress={() => navigation.navigate("RechercheManuelle")}
-        />
-        <Appwidget
-          title={"Faire un scan"}
-          icon={"barcode-scan"}
-          onPress={() => navigation.navigate("ScanScreen")}
-          style={styles.AppPickerField}
-        />
-      </View>
-      {/*End Body*/}
-    </Screen>
+        {/* Animated menu settings */}
+        <Animated.View
+          style={[
+            styles.slider,
+            {
+              transform: [{ translateX: transAnim }],
+            },
+          ]}
+        >
+          <Pressable onPress={translateLeft} style={styles.closeMenuButton}>
+            <View style={styles.closeMenuView}>
+              <MaterialCommunityIcons
+                name={"arrow-left-circle"}
+                size={32}
+                color={colors.Bluegradient2nd}
+              />
+              <Text style={styles.closeMenuText}>Home</Text>
+            </View>
+          </Pressable>
+          <FlatList
+            data={data}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <AppPickerField value={item.label} onPress={item.onPress} />
+            )}
+          />
+        </Animated.View>
+        {/*End of Animated menu settings */}
+        {/*End Header*/}
+
+        {/* Body */}
+        <View style={styles.body}>
+          <Appwidget
+            title={"Recherche Manuelle"}
+            icon={"folder-search"}
+            onPress={() => navigation.navigate("RechercheManuelle")}
+          />
+          <Appwidget
+            title={"Faire un scan"}
+            icon={"barcode-scan"}
+            onPress={() => navigation.navigate("ScanScreen")}
+          />
+        </View>
+        {/*End Body*/}
+      </Screen>
+    </>
   );
 }
 
@@ -164,13 +167,16 @@ const styles = StyleSheet.create({
     paddingRight: 30,
     flex: 1,
   },
-
+  boldtext: {
+    fontWeight: "bold",
+  },
   header: {
     height: "30%",
     justifyContent: "center",
     alignItems: "center",
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
+    elevation: 10,
   },
   logo: {
     width: 150,
@@ -202,7 +208,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightgrey,
     flex: 1,
     position: "absolute",
-    top: Constants.statusBarHeight,
+    top: 0,
     bottom: 0,
     left: -Dimensions.get("window").width / 2,
     right: 0,

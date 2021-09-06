@@ -9,32 +9,34 @@ import { LinearGradient } from "expo-linear-gradient";
 function Appwidget({ title, icon, onPress }) {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <LinearGradient
-        style={styles.button}
-        colors={[colors.Bluegradient2nd, colors.Bluegradient2nd]}
-      >
-        <MaterialCommunityIcons
-          name={icon}
-          color={"white"}
-          size={24}
-          style={styles.icon}
-        />
-        <Text style={styles.text}> {title} </Text>
-      </LinearGradient>
+      <MaterialCommunityIcons
+        name={icon}
+        color={"white"}
+        size={24}
+        style={styles.icon}
+      />
+      <Text style={styles.text}> {title} </Text>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
+  container: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10,
+    elevation: 5,
+    alignItems: "center",
+    justifyContent: "center",
     borderRadius: 10,
     padding: 15,
     flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
     margin: 15,
-    width: 200,
+    width: "100%",
     height: 100,
+    elevation: 10,
+    backgroundColor: colors.blue,
   },
 
   text: {

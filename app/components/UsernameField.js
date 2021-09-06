@@ -23,7 +23,7 @@ function UsernameField({ icon, ...otherProps }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.lightgrey,
+    //backgroundColor: colors.lightgrey,
     borderRadius: 15,
     flexDirection: "row",
     width: "100%",
@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 5,
     marginTop: 5,
+    borderColor: colors.ButtonBlueGradient2,
+    borderWidth: 1,
   },
   textInput: {
     fontSize: 18,

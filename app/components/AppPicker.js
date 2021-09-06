@@ -80,6 +80,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderRadius: 15,
     alignItems: "center",
+    borderColor: colors.ButtonBlueGradient2,
+    borderWidth: 1,
   },
   closeButton: {
     alignSelf: "flex-end",

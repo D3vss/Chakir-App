@@ -35,16 +35,17 @@ export const AppScrollView = ({ data, children }) => {
     return (
       <View style={styles.container}>
         <Animated.View style={styles.card}>
-          <Text>
+          <Text style={styles.infos}>
             <Text style={styles.bold}>Nom Complet: </Text> {item.name}
           </Text>
-          <Text>
+
+          <Text style={styles.infos}>
             <Text style={styles.bold}>PV: </Text> {item.pv}
           </Text>
-          <Text>
+          <Text style={styles.infos}>
             <Text style={styles.bold}>VIN: </Text> {item.vin}
           </Text>
-          <Text style={{ writingDirection: "rtl" }}>
+          <Text style={styles.infos}>
             <Text style={styles.bold}>Matricule: </Text> {item.matricule.nev}|
             {item.matricule.ac}|{item.matricule.regionId}
           </Text>
@@ -115,6 +116,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
+  },
+  infos: {
+    marginBottom: 10,
+    backgroundColor: colors.lightblue,
+    width: "100%",
+    height: 50,
+    borderRadius: 15,
+    padding: 15,
+    justifyContent: "center",
   },
   found: {
     backgroundColor: colors.lightgreen,
