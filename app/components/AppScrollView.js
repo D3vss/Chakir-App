@@ -46,7 +46,7 @@ export const AppScrollView = ({ data, children }) => {
             <Text style={styles.bold}>VIN: </Text> {item.VIN}
           </Text>
           <Text style={styles.infos}>
-            <Text style={styles.bold}>Matricule: </Text> {item.Matricule}
+            <Text style={styles.bold}>Matricule: {item.Matricule}</Text>
           </Text>
         </Animated.View>
         <View style={styles.containerPag}>
