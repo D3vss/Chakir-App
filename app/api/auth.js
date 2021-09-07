@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import apiClient from "./client";
+import { apiClientV1 } from "./client";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const loginHandler = async (
@@ -10,7 +10,7 @@ export const loginHandler = async (
   setIsLogin
 ) => {
   try {
-    const response = await apiClient.post("/login", values);
+    const response = await apiClientV1.post("/login", values);
     const { data } = response;
     if (data.success) {
       navigation.navigate("HomeScreen", data.data);

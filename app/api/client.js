@@ -1,7 +1,8 @@
 import { create } from "apisauce";
 
-const apiClient = create({
+export const apiClientV1 = create({
   baseURL: "https://chakir-app-back-end.herokuapp.com/api/v1/",
 });
-
-export default apiClient;
+export const apiClientV2 = create({
+  baseURL: "https://chakir-app-back-end.herokuapp.com/api/v2/",
+});

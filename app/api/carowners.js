@@ -1,14 +1,14 @@
-import apiClient from "./client";
+import { apiClientV2 } from "./client";
 
 export const SearchHandler = async (values, setSubmitting, navigation) => {
   try {
     const { pv, vin, ac, nev, regionId } = values;
     if (pv === "" && vin === "") {
-      var response = await apiClient.get(
+      var response = await apiClientV2.get(
         `/carOwners/matricule/nev/${nev}/ac/${ac}/regionid/${regionId}`
       );
     } else {
-      var response = await apiClient.get(
+      var response = await apiClientV2.get(
         `/carOwners/${pv === "" ? `vin/${vin}` : `pv/${pv}`}`
       );
     }
@@ -32,7 +32,7 @@ export const SearchHandler = async (values, setSubmitting, navigation) => {
 export const ScanHandler = async (values, navigation) => {
   try {
     const { pv } = values;
-    const response = await apiClient.get(`/carOwners/pv/${pv}`);
+    const response = await apiClientV2.get(`/carOwners/pv/${pv}`);
 
     let isFound;
     const { data } = response;
