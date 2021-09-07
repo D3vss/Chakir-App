@@ -35,19 +35,18 @@ export const AppScrollView = ({ data, children }) => {
     return (
       <View style={styles.container}>
         <Animated.View style={styles.card}>
+          //* TODO hnaya modifie
           <Text style={styles.infos}>
-            <Text style={styles.bold}>Nom Complet: </Text> {item.name}
-          </Text>
-
-          <Text style={styles.infos}>
-            <Text style={styles.bold}>PV: </Text> {item.pv}
+            {/* <Text style={styles.bold}>Nom Complet: </Text> {item.name} */}
           </Text>
           <Text style={styles.infos}>
-            <Text style={styles.bold}>VIN: </Text> {item.vin}
+            <Text style={styles.bold}>PV: </Text> {item.NumPV}
           </Text>
           <Text style={styles.infos}>
-            <Text style={styles.bold}>Matricule: </Text> {item.matricule.nev}|
-            {item.matricule.ac}|{item.matricule.regionId}
+            <Text style={styles.bold}>VIN: </Text> {item.VIN}
+          </Text>
+          <Text style={styles.infos}>
+            <Text style={styles.bold}>Matricule: </Text> {item.Matricule}
           </Text>
         </Animated.View>
         <View style={styles.containerPag}>
@@ -62,7 +61,7 @@ export const AppScrollView = ({ data, children }) => {
     <FlatList
       data={data}
       renderItem={renderItem}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item) => item.VIN.toString()}
       horizontal
       extraData={children}
       pagingEnabled

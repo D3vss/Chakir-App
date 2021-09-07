@@ -10,8 +10,7 @@ import colors from "../config/colors";
 import { AppScrollView } from "../components/AppScrollView";
 
 function SearchEndScreen({ navigation, route }) {
-  const { data } = route.params;
-
+  const data = route.params;
   return (
     // <Screen>
     //   <View style={styles.body}>

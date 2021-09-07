@@ -5,6 +5,9 @@ import colors from "../config/colors";
 import AppButton from "../components/AppButton";
 
 function SearchEndSplashScreen({ navigation, route }) {
+  //* Destruction of params
+  const { data } = route.params.data;
+
   //Value depends on whether the data is found or not
   const [isFound, setIsFound] = useState(true);
   return (
@@ -23,8 +26,7 @@ function SearchEndSplashScreen({ navigation, route }) {
             title={"S'avoir plus"}
             icon={"arrow-right"}
             onPress={() => {
-              //navigation.navigate("SearchEnd", route.params.data);
-              console.log(route.params);
+              navigation.navigate("SearchEnd", data);
             }}
           />
         </>

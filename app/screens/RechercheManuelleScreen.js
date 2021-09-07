@@ -82,166 +82,170 @@ function RechercheManuelleScreen({ navigation }) {
 
   return (
     <KeyboardAvoidingWrapper enabled={false}>
-      <Screen>
-        <LinearGradient
-          colors={[colors.Bluegradient1st, colors.Bluegradient2nd]}
-          style={styles.header}
-        >
-          <TouchableOpacity
-            style={styles.settingsButton}
-            onPress={() => navigation.goBack()}
+      <>
+        <Screen>
+          <LinearGradient
+            colors={[colors.Bluegradient1st, colors.Bluegradient2nd]}
+            style={styles.header}
           >
-            <MaterialCommunityIcons
-              name={"arrow-left-circle"}
-              size={32}
-              color={"white"}
+            <TouchableOpacity
+              style={styles.settingsButton}
+              onPress={() => navigation.goBack()}
+            >
+              <MaterialCommunityIcons
+                name={"arrow-left-circle"}
+                size={32}
+                color={"white"}
+              />
+            </TouchableOpacity>
+            <Image
+              source={require("../assets/logo-white.png")}
+              style={styles.logo}
             />
-          </TouchableOpacity>
-          <Image
-            source={require("../assets/logo-white.png")}
-            style={styles.logo}
-          />
-        </LinearGradient>
+          </LinearGradient>
 
-        <View style={styles.body}>
-          {/* Choosing buttons Group */}
-          {choiceButtonsVisible && (
-            <>
-              <AppButton
-                title={"Recherche par matricule"}
-                onPress={() => {
-                  setMatriculeVisible(!matriculeVisible);
-                  setchoiceButtonsVisible(!choiceButtonsVisible);
-                }}
-              />
-              <AppButton
-                title={"Recherche par PV"}
-                onPress={() => {
-                  setPvVisible(!pvVisible);
-                  setchoiceButtonsVisible(!choiceButtonsVisible);
-                }}
-              />
-              <AppButton
-                title={"Recherche par VIN"}
-                onPress={() => {
-                  setVinVisible(!vinVisible);
-                  setchoiceButtonsVisible(!choiceButtonsVisible);
-                }}
-              />
-            </>
-          )}
-          {/* End of choosing buttons group */}
-
-          {/*Formik tag  */}
-          <Formik
-            initialValues={{ pv: "", vin: "", nev: "", ac: "", regionId: "" }}
-            onSubmit={(values, { setSubmitting }) => {
-              SearchHandler(values, setSubmitting, navigation);
-            }}
-            validationSchema={validationSchema}
-          >
-            {({ handleChange, handleSubmit, errors, isSubmitting }) => (
+          <View style={styles.body}>
+            {/* Choosing buttons Group */}
+            {choiceButtonsVisible && (
               <>
-                {/* Form Container */}
-                <View style={styles.form}>
-                  {/* Search with Matricule */}
-                  {matriculeVisible && (
-                    <>
-                      <Text style={styles.label}>
-                        Veuillez saisir le matricule:
-                      </Text>
-                      <View style={styles.matricule}>
-                        <AppTextInput
-                          style={styles.formField}
-                          placeholder={"NEV"}
-                          onChangeText={handleChange("nev")}
-                        />
-                        <AppFormPicker
-                          name={"ac"}
-                          data={AC}
-                          style={styles.formField}
-                          placeholder={"AC"}
-                        />
-                        <AppTextInput
-                          style={styles.formField}
-                          placeholder={"Region ID"}
-                          onChangeText={handleChange("regionId")}
-                        />
-                      </View>
-                      <ErrorMessage error={errors.nev} />
-                      <ErrorMessage error={errors.regionId} />
-                    </>
-                  )}
-
-                  {/* Search with PV */}
-                  {pvVisible && (
-                    <>
-                      <Text style={styles.label}>Veuillez saisir le PV:</Text>
-                      <AppTextInput
-                        style={styles.formField2}
-                        placeholder={"PV..."}
-                        onChangeText={handleChange("pv")}
-                        autoCorrect={false}
-                      />
-                      <ErrorMessage error={errors.pv} />
-                    </>
-                  )}
-
-                  {/* Search with VIN */}
-                  {vinVisible && (
-                    <>
-                      <Text style={styles.label}>Veuillez saisir le VIN:</Text>
-                      <AppTextInput
-                        style={styles.formField2}
-                        placeholder={"VIN..."}
-                        onChangeText={handleChange("vin")}
-                        autoCorrect={false}
-                      />
-                      <ErrorMessage error={errors.vin} />
-                    </>
-                  )}
-                </View>
-                {/*End of Form Container */}
-                <View style={{ width: "100%" }}>
-                  <>
-                    {/* Submit Button */}
-                    {!choiceButtonsVisible && (
-                      <>
-                        {!isSubmitting && (
-                          <AppButton
-                            title={"Recherche"}
-                            onPress={handleSubmit}
-                          />
-                        )}
-                        {isSubmitting && (
-                          <AppButton
-                            title={"Loading"}
-                            isSubmitting
-                            onPress={handleSubmit}
-                          />
-                        )}
-
-                        {/* Button to choose the search mode */}
-                        {!choiceButtonsVisible && (
-                          <AppButton
-                            title="Rechoisir le mode"
-                            onPress={() => {
-                              setMatriculeVisible(false);
-                              setPvVisible(false);
-                              setVinVisible(false);
-                              setchoiceButtonsVisible(!choiceButtonsVisible);
-                            }}
-                          />
-                        )}
-                      </>
-                    )}
-                  </>
-                </View>
+                <AppButton
+                  title={"Recherche par matricule"}
+                  onPress={() => {
+                    setMatriculeVisible(!matriculeVisible);
+                    setchoiceButtonsVisible(!choiceButtonsVisible);
+                  }}
+                />
+                <AppButton
+                  title={"Recherche par PV"}
+                  onPress={() => {
+                    setPvVisible(!pvVisible);
+                    setchoiceButtonsVisible(!choiceButtonsVisible);
+                  }}
+                />
+                <AppButton
+                  title={"Recherche par VIN"}
+                  onPress={() => {
+                    setVinVisible(!vinVisible);
+                    setchoiceButtonsVisible(!choiceButtonsVisible);
+                  }}
+                />
               </>
             )}
-          </Formik>
-        </View>
-      </Screen>
+            {/* End of choosing buttons group */}
+
+            {/*Formik tag  */}
+            <Formik
+              initialValues={{ pv: "", vin: "", nev: "", ac: "", regionId: "" }}
+              onSubmit={(values, { setSubmitting }) => {
+                SearchHandler(values, setSubmitting, navigation);
+              }}
+              validationSchema={validationSchema}
+            >
+              {({ handleChange, handleSubmit, errors, isSubmitting }) => (
+                <>
+                  {/* Form Container */}
+                  <View style={styles.form}>
+                    {/* Search with Matricule */}
+                    {matriculeVisible && (
+                      <>
+                        <Text style={styles.label}>
+                          Veuillez saisir le matricule:
+                        </Text>
+                        <View style={styles.matricule}>
+                          <AppTextInput
+                            style={styles.formField}
+                            placeholder={"NEV"}
+                            onChangeText={handleChange("nev")}
+                          />
+                          <AppFormPicker
+                            name={"ac"}
+                            data={AC}
+                            style={styles.formField}
+                            placeholder={"AC"}
+                          />
+                          <AppTextInput
+                            style={styles.formField}
+                            placeholder={"Region ID"}
+                            onChangeText={handleChange("regionId")}
+                          />
+                        </View>
+                        <ErrorMessage error={errors.nev} />
+                        <ErrorMessage error={errors.regionId} />
+                      </>
+                    )}
+
+                    {/* Search with PV */}
+                    {pvVisible && (
+                      <>
+                        <Text style={styles.label}>Veuillez saisir le PV:</Text>
+                        <AppTextInput
+                          style={styles.formField2}
+                          placeholder={"PV..."}
+                          onChangeText={handleChange("pv")}
+                          autoCorrect={false}
+                        />
+                        <ErrorMessage error={errors.pv} />
+                      </>
+                    )}
+
+                    {/* Search with VIN */}
+                    {vinVisible && (
+                      <>
+                        <Text style={styles.label}>
+                          Veuillez saisir le VIN:
+                        </Text>
+                        <AppTextInput
+                          style={styles.formField2}
+                          placeholder={"VIN..."}
+                          onChangeText={handleChange("vin")}
+                          autoCorrect={false}
+                        />
+                        <ErrorMessage error={errors.vin} />
+                      </>
+                    )}
+                  </View>
+                  {/*End of Form Container */}
+                  <View style={{ width: "100%" }}>
+                    <>
+                      {/* Submit Button */}
+                      {!choiceButtonsVisible && (
+                        <>
+                          {!isSubmitting && (
+                            <AppButton
+                              title={"Recherche"}
+                              onPress={handleSubmit}
+                            />
+                          )}
+                          {isSubmitting && (
+                            <AppButton
+                              title={"Loading"}
+                              isSubmitting
+                              onPress={handleSubmit}
+                            />
+                          )}
+
+                          {/* Button to choose the search mode */}
+                          {!choiceButtonsVisible && (
+                            <AppButton
+                              title="Rechoisir le mode"
+                              onPress={() => {
+                                setMatriculeVisible(false);
+                                setPvVisible(false);
+                                setVinVisible(false);
+                                setchoiceButtonsVisible(!choiceButtonsVisible);
+                              }}
+                            />
+                          )}
+                        </>
+                      )}
+                    </>
+                  </View>
+                </>
+              )}
+            </Formik>
+          </View>
+        </Screen>
+      </>
     </KeyboardAvoidingWrapper>
   );
 }
