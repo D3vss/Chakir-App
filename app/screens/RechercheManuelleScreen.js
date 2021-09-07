@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 
-import {
-  View,
-  Text,
-  StyleSheet,
-  Modal,
-  Pressable,
-  TouchableOpacity,
-  Image,
-  KeyboardAvoidingView,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -27,18 +18,38 @@ import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAvoidingWrapper } from "../components/keyboardAvoidingWrapper";
 import { SearchHandler } from "../api/carowners";
 
-const validationSchema = Yup.object()
-  .shape({
-    nev: Yup.number().positive().max(99999).min(1).label("NEV"),
-    regionId: Yup.number().max(89).min(1).label("Region Id"),
-    pv: Yup.number().max(99999).label("PV"),
-    vin: Yup.number().max(99999).label("VIN"),
-  })
-  .test(
-    "at-least-one-number",
-    "you must provide at least one number",
-    (value) => !!(value.nev || value.regionId || value.pv || value.vin)
-  );
+Yup.setLocale({
+  mixed: {
+    default: "Champs invalid",
+    required: "Ce champs est obligatoire",
+  },
+  string: {
+    length: "PV doit contenir 10 caractères",
+  },
+  number: {
+    default: "a",
+    positive: "NEV doit etre positif",
+    max: `NEV doit etre entre 1 et 99999`,
+    min: `NEV doit etre entre 1 et 99999`,
+  },
+});
+
+const validationSchema = Yup.object().shape({
+  nev: Yup.number("number")
+    .positive()
+    .max(99999)
+    .min(1)
+    .label("NEV")
+    .typeError("NEV est un nombre"),
+  regionId: Yup.number()
+    .positive()
+    .max(89)
+    .min(1)
+    .label("Region Id")
+    .typeError("NEV est un nombre"),
+  pv: Yup.string().length(11).label("PV"),
+  vin: Yup.string().label("VIN"),
+});
 
 const AC = [
   {

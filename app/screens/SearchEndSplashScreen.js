@@ -22,7 +22,10 @@ function SearchEndSplashScreen({ navigation, route }) {
           <AppButton
             title={"S'avoir plus"}
             icon={"arrow-right"}
-            onPress={() => navigation.navigate("SearchEnd", route.params.data)}
+            onPress={() => {
+              //navigation.navigate("SearchEnd", route.params.data);
+              console.log(route.params);
+            }}
           />
         </>
       )}
