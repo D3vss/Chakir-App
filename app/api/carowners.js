@@ -5,7 +5,7 @@ export const SearchHandler = async (values, setSubmitting, navigation) => {
     const { pv, vin, ac, nev, regionId } = values;
     if (pv === "" && vin === "") {
       var response = await apiClient.get(
-        `/carOwners/matircule/nev/${nev}/ac/${ac}/regionid/${regionId}`
+        `/carOwners/matricule/nev/${nev}/ac/${ac}/regionid/${regionId}`
       );
     } else {
       var response = await apiClient.get(
