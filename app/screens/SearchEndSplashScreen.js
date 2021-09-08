@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, BackHandler } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
 import AppButton from "../components/AppButton";
@@ -7,7 +7,17 @@ import AppButton from "../components/AppButton";
 function SearchEndSplashScreen({ navigation, route }) {
   //* Destruction of params
   const { data } = route.params.data;
+  useEffect(() => {
+    const backAction = () => {
+      navigation.navigate("HomeScreen");
+    };
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
 
+    return () => backHandler.remove();
+  }, []);
   //Value depends on whether the data is found or not
   const [isFound, setIsFound] = useState(true);
   return (
