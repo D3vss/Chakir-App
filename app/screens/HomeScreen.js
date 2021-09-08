@@ -93,6 +93,13 @@ function HomeScreen({ navigation, route }) {
         >
           <TouchableOpacity
             style={styles.settingsButton}
+            onPress={() => ClearLogin(setStoredCredentials, navigation)}
+          >
+            <MaterialCommunityIcons name={"power"} size={24} color={"white"} />
+          </TouchableOpacity>
+          {/* TODO: uncomment when the settings menu is available */}
+          {/* <TouchableOpacity
+            style={styles.settingsButton}
             onPress={translateRight}
           >
             <MaterialCommunityIcons
@@ -100,7 +107,7 @@ function HomeScreen({ navigation, route }) {
               size={24}
               color={"white"}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <Image
             source={require("../assets/logo-white.png")}
             style={styles.logo}
@@ -111,7 +118,8 @@ function HomeScreen({ navigation, route }) {
         </LinearGradient>
 
         {/* Animated menu settings */}
-        <Animated.View
+        {/* TODO: uncomment the menu when the settings are available */}
+        {/* <Animated.View
           style={[
             styles.slider,
             {
@@ -137,7 +145,7 @@ function HomeScreen({ navigation, route }) {
             )}
           />
         </Animated.View>
-        {/*End of Animated menu settings */}
+        End of Animated menu settings */}
         {/*End Header*/}
 
         {/* Body */}
