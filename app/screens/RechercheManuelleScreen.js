@@ -41,6 +41,31 @@ Yup.setLocale({
   },
 });
 
+//custom method
+
+const checkField = (fieldName, searchMode) => {
+  const { pv, vin, ac, nev, regionId } = fieldName;
+  switch (searchMode) {
+    case "matricule": {
+      nev === "" || ac === "" || regionId === "" ? false : true;
+      break;
+    }
+    case "pv": {
+      console.log("PV in");
+      return pv === "" ? false : true;
+    }
+    case "vin": {
+      return vin === "" ? false : true;
+    }
+    default: {
+      console.log("default");
+      return false;
+    }
+  }
+};
+
+//END OF custom method
+
 const validationSchema = Yup.object().shape({
   nev: Yup.number("number")
     .positive()
@@ -87,6 +112,7 @@ function RechercheManuelleScreen({ navigation }) {
   const [pvVisible, setPvVisible] = useState(false);
   const [vinVisible, setVinVisible] = useState(false);
 
+  const [searchMode, setSearchMode] = useState();
   return (
     <KeyboardAvoidingWrapper enabled={false}>
       <>
@@ -120,6 +146,7 @@ function RechercheManuelleScreen({ navigation }) {
                   onPress={() => {
                     setMatriculeVisible(!matriculeVisible);
                     setchoiceButtonsVisible(!choiceButtonsVisible);
+                    setSearchMode("matricule");
                   }}
                 />
                 <AppButton
@@ -127,6 +154,7 @@ function RechercheManuelleScreen({ navigation }) {
                   onPress={() => {
                     setPvVisible(!pvVisible);
                     setchoiceButtonsVisible(!choiceButtonsVisible);
+                    setSearchMode("pv");
                   }}
                 />
                 <AppButton
@@ -134,6 +162,7 @@ function RechercheManuelleScreen({ navigation }) {
                   onPress={() => {
                     setVinVisible(!vinVisible);
                     setchoiceButtonsVisible(!choiceButtonsVisible);
+                    setSearchMode("vin");
                   }}
                 />
               </>
@@ -144,7 +173,13 @@ function RechercheManuelleScreen({ navigation }) {
             <Formik
               initialValues={{ pv: "", vin: "", nev: "", ac: "", regionId: "" }}
               onSubmit={(values, { setSubmitting }) => {
-                SearchHandler(values, setSubmitting, navigation);
+                console.log(searchMode);
+                console.log(checkField(searchMode, values));
+                if (checkField(searchMode, values)) {
+                  console.log(searchMode);
+                  console.log(checkField(searchMode, values));
+                  SearchHandler(values, setSubmitting, navigation);
+                }
               }}
               validationSchema={validationSchema}
             >
