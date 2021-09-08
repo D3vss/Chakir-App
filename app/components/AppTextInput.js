@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../config/colors";
 
-function AppTextInput({ icon, ...otherProps }) {
+function AppTextInput({ icon, onFocus, ...otherProps }) {
   return (
     <View style={styles.container}>
       {icon && (
@@ -16,7 +16,11 @@ function AppTextInput({ icon, ...otherProps }) {
           style={styles.icon}
         />
       )}
-      <TextInput style={styles.textInput} {...otherProps}></TextInput>
+      <TextInput
+        style={styles.textInput}
+        onFocus={onFocus}
+        {...otherProps}
+      ></TextInput>
     </View>
   );
 }

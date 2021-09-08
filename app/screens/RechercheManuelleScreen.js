@@ -41,29 +41,6 @@ Yup.setLocale({
   },
 });
 
-//custom method
-
-const checkField = (fieldName, searchMode) => {
-  const { pv, vin, ac, nev, regionId } = fieldName;
-  switch (searchMode) {
-    case "matricule": {
-      return nev === "" || ac === "" || regionId === "" ? false : true;
-      break;
-    }
-    case "pv": {
-      return pv === "" ? false : true;
-    }
-    case "vin": {
-      return vin === "" ? false : true;
-    }
-    default: {
-      return false;
-    }
-  }
-};
-
-//END OF custom method
-
 const validationSchema = Yup.object().shape({
   nev: Yup.number("number")
     .positive()
@@ -110,7 +87,44 @@ function RechercheManuelleScreen({ navigation }) {
   const [pvVisible, setPvVisible] = useState(false);
   const [vinVisible, setVinVisible] = useState(false);
 
+  const [isTyped, setIsTyped] = useState(false);
   const [searchMode, setSearchMode] = useState();
+
+  //check if field is filled
+
+  const checkField = (fieldName, searchMode) => {
+    const { pv, vin, ac, nev, regionId } = fieldName;
+    switch (searchMode) {
+      case "matricule": {
+        if (nev === "" || ac === "" || regionId === "") {
+          setIsTyped(true);
+          return false;
+        }
+        return true;
+      }
+      case "pv": {
+        if (pv === "") {
+          setIsTyped(true);
+          return false;
+        }
+
+        return true;
+      }
+      case "vin": {
+        if (vin === "") {
+          setIsTyped(true);
+          return false;
+        }
+        return true;
+      }
+      default: {
+        return false;
+      }
+    }
+  };
+
+  //end
+
   return (
     <KeyboardAvoidingWrapper enabled={false}>
       <>
@@ -195,6 +209,7 @@ function RechercheManuelleScreen({ navigation }) {
                             style={styles.formField}
                             placeholder={"NEV"}
                             onChangeText={handleChange("nev")}
+                            onFocus={() => setIsTyped(false)}
                           />
                           <AppFormPicker
                             name={"ac"}
@@ -206,6 +221,7 @@ function RechercheManuelleScreen({ navigation }) {
                             style={styles.formField}
                             placeholder={"Region ID"}
                             onChangeText={handleChange("regionId")}
+                            onFocus={() => setIsTyped(false)}
                           />
                         </View>
                         <ErrorMessage error={errors.nev} />
@@ -222,6 +238,7 @@ function RechercheManuelleScreen({ navigation }) {
                           placeholder={"PV..."}
                           onChangeText={handleChange("pv")}
                           autoCorrect={false}
+                          onFocus={() => setIsTyped(false)}
                         />
                         <ErrorMessage error={errors.pv} />
                       </>
@@ -238,9 +255,14 @@ function RechercheManuelleScreen({ navigation }) {
                           placeholder={"VIN..."}
                           onChangeText={handleChange("vin")}
                           autoCorrect={false}
+                          onFocus={() => setIsTyped(false)}
                         />
                         <ErrorMessage error={errors.vin} />
                       </>
+                    )}
+
+                    {isTyped && (
+                      <ErrorMessage error={`Inserer le ${searchMode}`} />
                     )}
                   </View>
                   {/*End of Form Container */}

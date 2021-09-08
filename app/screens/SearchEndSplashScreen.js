@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
+
 import { View, Text, StyleSheet, BackHandler } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
@@ -7,19 +9,17 @@ import AppButton from "../components/AppButton";
 function SearchEndSplashScreen({ navigation, route }) {
   //* Destruction of params
   const { data } = route.params.data;
-  useEffect(() => {
+  useFocusEffect(() => {
     const backAction = () => {
       navigation.navigate("HomeScreen");
+      console.log("backPressed");
     };
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
-
-    return () => backHandler.remove();
-  }, []);
+    BackHandler.addEventListener("hardwareBackPress", backAction);
+    return () =>
+      BackHandler.removeEventListener("hardwareBackPress", backAction);
+    // return () => backHandler.remove();
+  });
   //Value depends on whether the data is found or not
-  const [isFound, setIsFound] = useState(true);
   return (
     <View style={styles.container}>
       {route.params.isFound && (

@@ -57,12 +57,12 @@ export const AppScrollView = ({ data, children, onPress }) => {
           </Text>
 
           <Text style={styles.infos}>
-            <Text style={styles.bold}>Matricule: </Text>{" "}
+            <Text style={styles.bold}>Date de controle: </Text>{" "}
             {item.DateControle.slice(0, 10)}
           </Text>
 
           <Text style={styles.infos}>
-            <Text style={styles.bold}>Matricule: </Text> {item.Marque}
+            <Text style={styles.bold}>Marque: </Text> {item.Marque}
           </Text>
         </Animated.View>
         <View style={styles.containerPag}>
