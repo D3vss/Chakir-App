@@ -31,7 +31,7 @@ Yup.setLocale({
     required: "Ce champs est obligatoire",
   },
   string: {
-    length: "PV doit contenir 10 caractères",
+    length: "PV doit contenir 11 caractères",
   },
   number: {
     default: "a",

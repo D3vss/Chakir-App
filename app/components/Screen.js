@@ -1,6 +1,7 @@
 import React from "react";
 
-import { SafeAreaView, StyleSheet, StatusBar } from "react-native";
+import { SafeAreaView, StyleSheet, StatusBar, Dimensions } from "react-native";
+const { width, height } = Dimensions.get("window");
 
 function screen({ children }, ...otherProps) {
   return (
@@ -15,6 +16,8 @@ function screen({ children }, ...otherProps) {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    height: height,
+    width: width,
   },
 });
 

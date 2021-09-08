@@ -4,7 +4,11 @@ import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
+  ScrollView,
+  Dimensions,
 } from "react-native";
+const { width, height } = Dimensions.get("window");
+//* TODO to fix Keyboard dismiss , we need to add ScrollView ...
 
 export const KeyboardAvoidingWrapper = ({ children, enabled }) => (
   <KeyboardAvoidingView
@@ -12,13 +16,17 @@ export const KeyboardAvoidingWrapper = ({ children, enabled }) => (
     style={{ flex: 1 }}
     enabled={enabled}
   >
-    <TouchableWithoutFeedback
-      onPress={() => {
-        Keyboard.dismiss;
-        console.log("touched");
+    <ScrollView
+      scrollEnabled={false}
+      style={{
+        flex: 1,
+        height: height,
+        width: width,
       }}
     >
-      {children}
-    </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        {children}
+      </TouchableWithoutFeedback>
+    </ScrollView>
   </KeyboardAvoidingView>
 );
