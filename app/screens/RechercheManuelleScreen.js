@@ -254,7 +254,7 @@ function RechercheManuelleScreen({ navigation }) {
                     )}
 
                     {isTyped && (
-                      <ErrorMessage error={`Inserer le ${searchMode}`} />
+                      <ErrorMessage error={"Ce champs est obligatoire!"} />
                     )}
                   </View>
                   {/*End of Form Container */}
