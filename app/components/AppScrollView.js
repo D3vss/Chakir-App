@@ -15,6 +15,7 @@ import Animated, {
 } from "react-native-reanimated";
 import Icon from "react-native-vector-icons/FontAwesome";
 import colors from "../config/colors";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const { width, height } = Dimensions.get("window");
 
@@ -23,7 +24,7 @@ const CARD_HEIGHT = (2 / 3) * height;
 const CARD_WIDTH = (5 / 6) * width;
 const PAGINATION_COLOR = colors.Bluegradient2nd;
 
-export const AppScrollView = ({ data, children }) => {
+export const AppScrollView = ({ data, children, onPress }) => {
   //* VARIABLES
   const enabledLeft = useSharedValue(0);
   const enabledRight = useSharedValue(0);
@@ -35,6 +36,13 @@ export const AppScrollView = ({ data, children }) => {
     return (
       <View style={styles.container}>
         <Animated.View style={styles.card}>
+          <TouchableOpacity style={styles.settingsButton} onPress={onPress}>
+            <MaterialCommunityIcons
+              name={"arrow-left-circle"}
+              size={32}
+              color={colors.ButtonBlueGradient2}
+            />
+          </TouchableOpacity>
           <Text style={styles.infos}>
             <Text style={styles.bold}>PV: </Text> {item.NumPV}
           </Text>
@@ -59,7 +67,7 @@ export const AppScrollView = ({ data, children }) => {
         </Animated.View>
         <View style={styles.containerPag}>
           <IconPag name="arrow-left" enalbed={enabledLeft} />
-          <TextPag page={index} />
+          <TextPag page={index + 1} />
           <IconPag name="arrow-right" enalbed={enabledRight} />
         </View>
       </View>
@@ -84,6 +92,11 @@ export const AppScrollView = ({ data, children }) => {
 
 //* StyleSheet
 const styles = StyleSheet.create({
+  settingsButton: {
+    position: "absolute",
+    left: 15,
+    top: 15,
+  },
   bold: {
     fontWeight: "bold",
   },

@@ -19,7 +19,10 @@ function SearchEndScreen({ navigation, route }) {
     //     <AppButton title={"Retour"} onPress={() => navigation.goBack()} />
     //   </View>
     // </Screen>
-    <AppScrollView data={data} />
+    <AppScrollView
+      data={data}
+      onPress={() => navigation.navigate("HomeScreen")}
+    />
   );
 }
 
