@@ -200,7 +200,7 @@ function RechercheManuelleScreen({ navigation }) {
                         <View style={styles.matricule}>
                           <AppTextInput
                             style={styles.formField}
-                            placeholder={"NEV"}
+                            placeholder={"NEV..."}
                             onChangeText={handleChange("nev")}
                             onFocus={() => setIsTyped(false)}
                           />
@@ -212,7 +212,7 @@ function RechercheManuelleScreen({ navigation }) {
                           />
                           <AppTextInput
                             style={styles.formField}
-                            placeholder={"Region ID"}
+                            placeholder={"Region ID..."}
                             onChangeText={handleChange("regionId")}
                             onFocus={() => setIsTyped(false)}
                           />
@@ -287,6 +287,7 @@ function RechercheManuelleScreen({ navigation }) {
                                 setPvVisible(false);
                                 setVinVisible(false);
                                 setchoiceButtonsVisible(!choiceButtonsVisible);
+                                setIsTyped(false);
                               }}
                             />
                           )}
@@ -344,16 +345,11 @@ const styles = StyleSheet.create({
 
   matricule: {
     flexDirection: "row",
+    width: "100%",
     alignItems: "center",
-    justifyContent: "space-between",
-    alignContent: "space-between",
-    //width: "100%",
-    //flex: 1,
+    justifyContent: "space-evenly",
   },
 
-  formField: {
-    width: 85,
-  },
   formField2: {
     width: "100%",
   },
