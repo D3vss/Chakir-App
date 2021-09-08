@@ -36,16 +36,25 @@ export const AppScrollView = ({ data, children }) => {
       <View style={styles.container}>
         <Animated.View style={styles.card}>
           <Text style={styles.infos}>
-            {/* <Text style={styles.bold}>Nom Complet: </Text> {item.name} */}
-          </Text>
-          <Text style={styles.infos}>
             <Text style={styles.bold}>PV: </Text> {item.NumPV}
           </Text>
-          <Text style={styles.infos}>
-            <Text style={styles.bold}>VIN: </Text> {item.VIN}
-          </Text>
+
           <Text style={styles.infos}>
             <Text style={styles.bold}>Matricule: </Text> {item.Matricule}
+          </Text>
+
+          <Text style={styles.infos}>
+            <Text style={styles.bold}>Date de validé du PV: </Text>{" "}
+            {item.DatePV.slice(0, 10)}
+          </Text>
+
+          <Text style={styles.infos}>
+            <Text style={styles.bold}>Matricule: </Text>{" "}
+            {item.DateControle.slice(0, 10)}
+          </Text>
+
+          <Text style={styles.infos}>
+            <Text style={styles.bold}>Matricule: </Text> {item.Marque}
           </Text>
         </Animated.View>
         <View style={styles.containerPag}>
