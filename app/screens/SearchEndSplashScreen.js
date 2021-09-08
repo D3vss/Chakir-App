@@ -9,15 +9,14 @@ import AppButton from "../components/AppButton";
 function SearchEndSplashScreen({ navigation, route }) {
   //* Destruction of params
   const { data } = route.params.data;
+  const backAction = () => {
+    navigation.navigate("HomeScreen");
+    return true;
+  };
   useFocusEffect(() => {
-    const backAction = () => {
-      navigation.navigate("HomeScreen");
-      console.log("backPressed");
-    };
     BackHandler.addEventListener("hardwareBackPress", backAction);
     return () =>
       BackHandler.removeEventListener("hardwareBackPress", backAction);
-    // return () => backHandler.remove();
   });
   //Value depends on whether the data is found or not
   return (

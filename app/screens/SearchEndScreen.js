@@ -4,16 +4,15 @@ import { BackHandler } from "react-native";
 import { AppScrollView } from "../components/AppScrollView";
 
 function SearchEndScreen({ navigation, route }) {
+  const backAction = () => {
+    navigation.navigate("HomeScreen");
+    return true;
+  };
   useFocusEffect(() => {
-    const backAction = () => {
-      //navigation.navigate("HomeScreen");
-      console.log("backPressed");
-    };
     const backHandler = BackHandler.addEventListener(
       "hardwareBackPress",
       backAction
     );
-
     return () =>
       BackHandler.removeEventListener("hardwareBackPress", backAction);
   });
