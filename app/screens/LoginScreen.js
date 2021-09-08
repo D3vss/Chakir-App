@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import { Image, StyleSheet, Text, View } from "react-native";
 
@@ -29,6 +29,13 @@ function LoginScreen({ navigation }) {
   const { storedCredentials, setStoredCredentials } =
     useContext(CredentialsContext);
   const [isLogin, setIsLogin] = useState(true);
+
+  useEffect(() => {
+    navigation.addListener("beforeRemove", (e) => {
+      e.preventDefault();
+    });
+  });
+
   return (
     <KeyboardAvoidingWrapper enabled={true}>
       <>
