@@ -1,8 +1,6 @@
 import React from "react";
 
-import Constants from "expo-constants";
 import { SafeAreaView, StyleSheet, StatusBar } from "react-native";
-import colors from "../config/colors";
 
 function screen({ children }, ...otherProps) {
   return (

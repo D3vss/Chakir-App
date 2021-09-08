@@ -204,6 +204,7 @@ const styles = StyleSheet.create({
   },
 
   slider: {
+    padding: 5,
     opacity: 0.9,
     backgroundColor: colors.lightgrey,
     flex: 1,

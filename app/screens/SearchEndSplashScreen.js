@@ -23,7 +23,7 @@ function SearchEndSplashScreen({ navigation, route }) {
             <Text style={styles.verifytext}>Resultat trouvé</Text>
           </View>
           <AppButton
-            title={"S'avoir plus"}
+            title={"Savoir plus"}
             icon={"arrow-right"}
             onPress={() => {
               navigation.navigate("SearchEnd", data);

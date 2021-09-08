@@ -12,7 +12,12 @@ export const KeyboardAvoidingWrapper = ({ children, enabled }) => (
     style={{ flex: 1 }}
     enabled={enabled}
   >
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss;
+        console.log("touched");
+      }}
+    >
       {children}
     </TouchableWithoutFeedback>
   </KeyboardAvoidingView>
