@@ -37,5 +37,8 @@
   "devDependencies": {
     "@babel/core": "^7.9.0"
   },
+  "android": {
+    "versionCode": 1
+  },
   "private": true
 }
