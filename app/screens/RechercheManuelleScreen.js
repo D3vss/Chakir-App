@@ -47,18 +47,16 @@ const checkField = (fieldName, searchMode) => {
   const { pv, vin, ac, nev, regionId } = fieldName;
   switch (searchMode) {
     case "matricule": {
-      nev === "" || ac === "" || regionId === "" ? false : true;
+      return nev === "" || ac === "" || regionId === "" ? false : true;
       break;
     }
     case "pv": {
-      console.log("PV in");
       return pv === "" ? false : true;
     }
     case "vin": {
       return vin === "" ? false : true;
     }
     default: {
-      console.log("default");
       return false;
     }
   }
@@ -173,12 +171,11 @@ function RechercheManuelleScreen({ navigation }) {
             <Formik
               initialValues={{ pv: "", vin: "", nev: "", ac: "", regionId: "" }}
               onSubmit={(values, { setSubmitting }) => {
-                console.log(searchMode);
-                console.log(checkField(searchMode, values));
-                if (checkField(searchMode, values)) {
-                  console.log(searchMode);
-                  console.log(checkField(searchMode, values));
+                if (checkField(values, searchMode)) {
                   SearchHandler(values, setSubmitting, navigation);
+                } else {
+                  setSubmitting(false);
+                  //* TODO SHOW ERROR MESSAGE
                 }
               }}
               validationSchema={validationSchema}
