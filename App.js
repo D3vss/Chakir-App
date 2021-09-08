@@ -36,6 +36,7 @@ import ScanScreen from "./app/screens/ScanScreen";
 import NavigationHandler from "./app/navigation/NavigationHandler";
 
 //* Import to keep the User Logged In
+import * as SplashScreen from "expo-splash-screen";
 import AppLoading from "expo-app-loading";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CredentialsContext } from "./app/components/CredentialsContext";
