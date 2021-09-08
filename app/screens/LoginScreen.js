@@ -7,7 +7,6 @@ import * as Yup from "yup";
 
 import { LinearGradient } from "expo-linear-gradient";
 
-import AppTextInput from "../components/AppTextInput";
 import ErrorMessage from "../components/ErrorMessage";
 import PasswordField from "../components/PasswordField";
 import UsernameField from "../components/UsernameField";

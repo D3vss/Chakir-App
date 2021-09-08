@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  Button,
-} from "react-native";
-import { Camera } from "expo-camera";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { BarCodeScanner } from "expo-barcode-scanner";

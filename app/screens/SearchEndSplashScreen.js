@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFocusEffect } from "@react-navigation/native";
 
 import { View, Text, StyleSheet, BackHandler } from "react-native";

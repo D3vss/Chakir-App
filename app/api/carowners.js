@@ -16,7 +16,6 @@ export const SearchHandler = async (values, setSubmitting, navigation) => {
     let isFound;
     const { data } = response;
     if (data.success === true) {
-      //navigation.navigate("SearchEnd", data);
       isFound = true;
       navigation.navigate("SearchEndSplashScreen", { data, isFound });
     } else {
@@ -37,7 +36,6 @@ export const ScanHandler = async (values, navigation) => {
     let isFound;
     const { data } = response;
     if (data.success === true) {
-      //navigation.navigate("SearchEnd", data);
       isFound = true;
       navigation.navigate("SearchEndSplashScreen", { data, isFound });
     } else {

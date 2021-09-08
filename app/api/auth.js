@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import { apiClientV1 } from "./client";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -18,8 +17,6 @@ export const loginHandler = async (
       setSubmitting(false);
       setIsLogin(true);
     } else {
-      //TODO Fix The UI to show errors
-      console.log("error");
       setIsLogin(false);
       setSubmitting(false);
     }

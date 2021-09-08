@@ -1,48 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
-
-//Screens
-import HomeScreen from "./app/screens/HomeScreen";
-import LoginScreen from "./app/screens/LoginScreen";
-import RechercheManuelleScreen from "./app/screens/RechercheManuelleScreen";
-import AppPicker from "./app/components/AppPicker";
-import Screen from "./app/components/Screen";
-import AppTextInput from "./app/components/AppTextInput";
-
-import AuthNavigator from "./app/navigation/AuthNavigator";
-
-import Constants from "expo-constants";
-
-import {
-  View,
-  StyleSheet,
-  Animated,
-  Dimensions,
-  FlatList,
-  Pressable,
-  ScrollView,
-  Text,
-} from "react-native";
-import colors from "./app/config/colors";
-import AppButton from "./app/components/AppButton";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-
-import AppPickerField from "./app/components/AppPickerField";
+//* Imports
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import HomeNavigator from "./app/navigation/HomeNavigator";
-import SearchEndScreen from "./app/screens/SearchEndScreen";
-import RechercheNavigator from "./app/navigation/RechercheNavigator";
-import LoadingScreen from "./app/screens/LoadingScreen";
-import ScanScreen from "./app/screens/ScanScreen";
 import NavigationHandler from "./app/navigation/NavigationHandler";
 
 //* Import to keep the User Logged In
-import * as SplashScreen from "expo-splash-screen";
 import AppLoading from "expo-app-loading";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CredentialsContext } from "./app/components/CredentialsContext";
-import { TextInput } from "react-native-gesture-handler";
 
+//* Main App
 export default function App() {
+  //* useState def
   const [isLoading, setIsLoading] = useState(true);
   const [storedCredentials, setStoredCredentials] = useState("");
   useEffect(() => {
@@ -51,11 +19,13 @@ export default function App() {
     }, 3500);
   }, []);
 
+  //* Get the stored info
   const checkLoginCredentials = async () => {
     try {
       const response = await AsyncStorage.getItem("ChakirUser");
+
       if (response !== null) {
-        console.log(response);
+        //* Get the info
         setStoredCredentials(JSON.parse(response));
       } else {
         setStoredCredentials(null);
@@ -70,7 +40,6 @@ export default function App() {
         onFinish={() => {}}
         onError={console.warn}
       />
-      <LoadingScreen />
     </>
   ) : (
     <CredentialsContext.Provider
@@ -81,9 +50,4 @@ export default function App() {
       </NavigationContainer>
     </CredentialsContext.Provider>
   );
-  // return (
-  //   <Screen>
-  //     <AppTextInput></AppTextInput>
-  //   </Screen>
-  // );
 }

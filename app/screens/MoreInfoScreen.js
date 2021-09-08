@@ -1,8 +1,6 @@
 import React from "react";
-import { useState } from "react";
 
-import { View, Text, StyleSheet, Image } from "react-native";
-import AppButton from "../components/AppButton";
+import { View, Text, StyleSheet } from "react-native";
 
 import Screen from "../components/Screen";
 import colors from "../config/colors";
@@ -41,7 +39,6 @@ const styles = StyleSheet.create({
   wave: {
     height: 250,
     width: 700,
-    //  position: "absolute",
   },
   welcome: {
     position: "absolute",

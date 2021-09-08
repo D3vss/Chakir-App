@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import colors from "../config/colors";
 
 function AppPickerField({ value, onPress }) {

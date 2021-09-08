@@ -4,7 +4,7 @@ import { Image, StyleSheet } from "react-native";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
 
-function LoadingScreen(props) {
+function LoadingScreen() {
   return (
     <Screen>
       <LinearGradient
