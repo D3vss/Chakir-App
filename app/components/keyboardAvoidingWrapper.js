@@ -11,14 +11,15 @@ const { width, height } = Dimensions.get("window");
 
 export const KeyboardAvoidingWrapper = ({ children, enabled }) => (
   <KeyboardAvoidingView
-    behavior={Platform.OS === "ios" ? "padding" : "height"}
-    style={{ flex: 1 }}
+    behavior={Platform.OS === "ios" ? "padding" : null}
+    style={{ flex: 1, flexDirection: "column", justifyContent: "center" }}
     enabled={enabled}
   >
     <ScrollView
       scrollEnabled={false}
       style={{
         flex: 1,
+        flexGrow: 1,
         height: height,
         width: width,
       }}

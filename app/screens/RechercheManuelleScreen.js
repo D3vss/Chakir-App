@@ -182,7 +182,6 @@ function RechercheManuelleScreen({ navigation }) {
                   SearchHandler(values, setSubmitting, navigation);
                 } else {
                   setSubmitting(false);
-                  //* TODO SHOW ERROR MESSAGE
                 }
               }}
               validationSchema={validationSchema}

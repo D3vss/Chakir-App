@@ -74,12 +74,14 @@ function LoginScreen({ navigation }) {
                         placeholder={"Username"}
                         onChangeText={handleChange("username")}
                         autoCorrect={false}
+                        autoCapitalize={"none"}
                       />
                       <ErrorMessage error={errors.username} />
                       <PasswordField
                         placeholder={"Password"}
                         onChangeText={handleChange("password")}
                         autoCorrect={false}
+                        autoCapitalize={"none"}
                       />
                       <ErrorMessage error={errors.password} />
                       {!isSubmitting && (
