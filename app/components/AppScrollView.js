@@ -1,6 +1,5 @@
 //* IMPORTS
-import React, { useState } from "react";
-import { Children } from "react";
+import React from "react";
 import {
   StyleSheet,
   Dimensions,
@@ -9,10 +8,7 @@ import {
   View,
   FlatList,
 } from "react-native";
-import Animated, {
-  useAnimatedScrollHandler,
-  useSharedValue,
-} from "react-native-reanimated";
+import Animated, { useSharedValue } from "react-native-reanimated";
 import Icon from "react-native-vector-icons/FontAwesome";
 import colors from "../config/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -52,7 +48,7 @@ export const AppScrollView = ({ data, children, onPress }) => {
           </Text>
 
           <Text style={styles.infos}>
-            <Text style={styles.bold}>Date de validé du PV: </Text>{" "}
+            <Text style={styles.bold}>Date de validé: </Text>{" "}
             {item.DatePV.slice(0, 10)}
           </Text>
 
@@ -145,20 +141,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 15,
     justifyContent: "center",
-  },
-  found: {
-    backgroundColor: colors.lightgreen,
-    height: "50%",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 15,
-  },
-  notFound: {
-    backgroundColor: colors.lightred,
-    height: "50%",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 15,
   },
   textPag: {
     backgroundColor: PAGINATION_COLOR,

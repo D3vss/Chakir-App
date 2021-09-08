@@ -30,7 +30,7 @@ function LoginScreen({ navigation }) {
     useContext(CredentialsContext);
   const [isLogin, setIsLogin] = useState(true);
   return (
-    <KeyboardAvoidingWrapper>
+    <KeyboardAvoidingWrapper enabled={true}>
       <>
         <Screen>
           <LinearGradient
