@@ -156,7 +156,7 @@ function HomeScreen({ navigation, route }) {
             onPress={() => navigation.navigate("RechercheManuelle")}
           />
           <Appwidget
-            title={"Faire un scan"}
+            title={"Recherche par Scan"}
             icon={"barcode-scan"}
             onPress={() => navigation.navigate("ScanScreen")}
           />
