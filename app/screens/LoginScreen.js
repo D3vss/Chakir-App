@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View, BackHandler } from "react-native";
 
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -17,6 +17,7 @@ import AppButton from "../components/AppButton";
 
 import { loginHandler } from "../api/auth";
 import { CredentialsContext } from "../components/CredentialsContext";
+import { useFocusEffect } from "@react-navigation/native";
 
 import { KeyboardAvoidingWrapper } from "../components/keyboardAvoidingWrapper";
 
@@ -35,7 +36,15 @@ function LoginScreen({ navigation }) {
       e.preventDefault();
     });
   });
-
+  const backAction = () => {
+    BackHandler.exitApp();
+    return true;
+  };
+  useFocusEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", backAction);
+    return () =>
+      BackHandler.removeEventListener("hardwareBackPress", backAction);
+  });
   return (
     <KeyboardAvoidingWrapper enabled={true}>
       <>

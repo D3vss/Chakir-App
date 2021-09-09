@@ -24,9 +24,7 @@ function ScanScreen({ navigation }) {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    //TODO: Delete when debugging is finished
-    console.log(`${type} and ${data}`);
-    //TODO: uncomment when scanned data is inserted into route params is ready
+
     ScanHandler({ pv: data }, navigation);
   };
 
