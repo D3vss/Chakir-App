@@ -105,7 +105,6 @@ function LoginScreen({ navigation }) {
                       {!isLogin && (
                         <ErrorMessage error={"Incorrect email or password "} />
                       )}
-                      <Text style={styles.text}>Forgot Password?</Text>
                     </View>
                   </LinearGradient>
                 </>

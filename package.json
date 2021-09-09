@@ -38,7 +38,7 @@
     "@babel/core": "^7.9.0"
   },
   "android": {
-    "versionCode": 1
+    "versionCode": 3
   },
   "private": true
 }
