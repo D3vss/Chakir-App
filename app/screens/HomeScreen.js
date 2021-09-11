@@ -91,6 +91,10 @@ function HomeScreen({ navigation, route }) {
           colors={[colors.Bluegradient1st, colors.Bluegradient2nd]}
           style={styles.header}
         >
+          <Image
+            source={require("../assets/Logo-ANSR.png")}
+            style={styles.logoANSR}
+          />
           <TouchableOpacity
             style={styles.settingsButton}
             onPress={() => ClearLogin(setStoredCredentials, navigation)}
@@ -191,6 +195,11 @@ const styles = StyleSheet.create({
     height: 50,
     position: "absolute",
     top: 40,
+  },
+  logoANSR: {
+    position: "absolute",
+    right: 20,
+    top: 10,
   },
   question: {
     alignSelf: "flex-start",
