@@ -137,7 +137,7 @@ function RechercheManuelleScreen({ navigation }) {
               />
             </TouchableOpacity>
             <Image
-              source={require("../assets/logo-white.png")}
+              source={require("../assets/logonew.png")}
               style={styles.logo}
             />
           </LinearGradient>
@@ -321,10 +321,10 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   logo: {
-    width: 150,
-    height: 50,
+    width: 100,
+    height: 100,
     position: "absolute",
-    top: 40,
+    top: 20,
   },
   settingsButton: {
     position: "absolute",

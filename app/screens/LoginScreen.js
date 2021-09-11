@@ -60,7 +60,7 @@ function LoginScreen({ navigation }) {
           >
             <View style={styles.header}>
               <Image
-                source={require("../assets/logo-white.png")}
+                source={require("../assets/logonew.png")}
                 style={styles.logo}
               />
             </View>
@@ -115,6 +115,7 @@ function LoginScreen({ navigation }) {
                         <ErrorMessage error={"Incorrect email or password "} />
                       )}
                     </View>
+                    <Text style={styles.copyright}>© 2021 BRATIL HT</Text>
                   </LinearGradient>
                 </>
               )}
@@ -128,6 +129,11 @@ function LoginScreen({ navigation }) {
 
 //Styling
 const styles = StyleSheet.create({
+  copyright: {
+    position: "absolute",
+    bottom: 0,
+    color: colors.medium,
+  },
   body: {
     backgroundColor: "red",
     flex: 1,
@@ -152,8 +158,9 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 150,
-    height: 50,
+    height: 150,
     position: "absolute",
+    top: 45,
   },
   screen: {
     flex: 1,

@@ -113,7 +113,7 @@ function HomeScreen({ navigation, route }) {
             />
           </TouchableOpacity> */}
           <Image
-            source={require("../assets/logo-white.png")}
+            source={require("../assets/logonew.png")}
             style={styles.logo}
           />
           <Text style={styles.welcome}>
@@ -191,15 +191,17 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   logo: {
-    width: 150,
-    height: 50,
+    width: 100,
+    height: 100,
     position: "absolute",
-    top: 40,
+    top: 45,
   },
   logoANSR: {
     position: "absolute",
     right: 20,
     top: 10,
+    width: 71.8125,
+    height: 29.2025,
   },
   question: {
     alignSelf: "flex-start",
