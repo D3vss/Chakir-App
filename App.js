@@ -13,11 +13,6 @@ export default function App() {
   //* useState def
   const [isLoading, setIsLoading] = useState(true);
   const [storedCredentials, setStoredCredentials] = useState("");
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3500);
-  }, []);
 
   //* Get the stored info
   const checkLoginCredentials = async () => {
@@ -37,7 +32,9 @@ export default function App() {
     <>
       <AppLoading
         startAsync={checkLoginCredentials}
-        onFinish={() => {}}
+        onFinish={() => {
+          setIsLoading(false);
+        }}
         onError={console.warn}
       />
     </>
