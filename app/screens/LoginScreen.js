@@ -115,7 +115,6 @@ function LoginScreen({ navigation }) {
                         <ErrorMessage error={"Incorrect email or password "} />
                       )}
                     </View>
-                    <Text style={styles.copyright}>© 2021 BRATIL HT</Text>
                   </LinearGradient>
                 </>
               )}
