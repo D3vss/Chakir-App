@@ -115,6 +115,7 @@ function LoginScreen({ navigation }) {
                         <ErrorMessage error={"Incorrect email or password "} />
                       )}
                     </View>
+                    <Text style={styles.copyright}>© 2021 BRATIL HT</Text>
                   </LinearGradient>
                 </>
               )}
@@ -130,8 +131,10 @@ function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
   copyright: {
     position: "absolute",
-    bottom: 0,
+    bottom: 10,
     color: colors.medium,
+    fontSize: 15,
+    opacity: 0.7,
   },
   body: {
     backgroundColor: "red",

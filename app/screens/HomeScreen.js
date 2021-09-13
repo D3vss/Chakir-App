@@ -92,7 +92,7 @@ function HomeScreen({ navigation, route }) {
           style={styles.header}
         >
           <Image
-            source={require("../assets/Logo-ANSR.png")}
+            source={require("../assets/logonewwhite.png")}
             style={styles.logoANSR}
           />
           <TouchableOpacity
