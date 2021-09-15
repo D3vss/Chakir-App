@@ -48,7 +48,7 @@ export const AppScrollView = ({ data, children, onPress }) => {
           </Text>
 
           <Text style={styles.infos}>
-            <Text style={styles.bold}>Date de validé: </Text>{" "}
+            <Text style={styles.bold}>Date de Validité: </Text>{" "}
             {item.DatePV.slice(0, 10)}
           </Text>
 
